@@ -14,6 +14,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mad.trafficclient.R;
+import com.mad.trafficclient.zy_java.manage.Chart_1;
+import com.mad.trafficclient.zy_java.manage.Chart_2;
+import com.mad.trafficclient.zy_java.manage.Chart_3;
+import com.mad.trafficclient.zy_java.manage.Chart_4;
+import com.mad.trafficclient.zy_java.manage.Chart_5;
+import com.mad.trafficclient.zy_java.manage.Chart_6;
+import com.mad.trafficclient.zy_java.manage.Chart_7;
 import com.mad.trafficclient.zy_java.view.GlideView;
 
 import java.util.ArrayList;
@@ -44,6 +51,9 @@ public class Zy_charmain extends Fragment {
         glideview = (GlideView) view.findViewById(R.id.glideview);
         list = new ArrayList<>();
         context = getContext();
+
+        tx_show.setText("有违章车辆和无违章车辆的占比统计");
+
         addData();
         viewpager.setAdapter(new FragmentStatePagerAdapter(getFragmentManager()) {
             @Override
@@ -66,6 +76,27 @@ public class Zy_charmain extends Fragment {
             public void onPageSelected(int i) {
                 glideview.setIndex(context, i);
                 switch (i) {
+                    case 0:
+                        tx_show.setText("有违章车辆和无违章车辆的占比统计");
+                        break;
+                    case 1:
+                        tx_show.setText("有无重复违章记录的车辆“的占比统计");
+                        break;
+                    case 2:
+                        tx_show.setText("违章车辆的违章次数占比分布");
+                        break;
+                    case 3:
+                        tx_show.setText("年龄群体车辆违章的占比统计");
+                        break;
+                    case 4:
+                        tx_show.setText("男性和女性有无车辆违章的占比统计");
+                        break;
+                    case 5:
+                        tx_show.setText("每日时段内车辆违章的占比统计");
+                        break;
+                    case 6:
+                        tx_show.setText("排名前十位的交通违法行为的占比统计");
+                        break;
                 }
             }
 
@@ -77,6 +108,13 @@ public class Zy_charmain extends Fragment {
     }
 
     private void addData() {
+        list.add(new Chart_1());
+        list.add(new Chart_2());
+        list.add(new Chart_3());
+        list.add(new Chart_4());
+        list.add(new Chart_5());
+        list.add(new Chart_6());
+        list.add(new Chart_7());
         if (list.size() > 0) {
             glideview.setCount(list.size());
             glideview.setIndex(context, 0);

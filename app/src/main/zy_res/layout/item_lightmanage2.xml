@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="60dp"
+            android:background="#000"></View>
+
+        <TextView
+            android:id="@+id/item_road"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="路口"
+            android:textSize="30dp" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="60dp"
+            android:background="#000"></View>
+
+        <TextView
+            android:id="@+id/item_redtime"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="红灯时长(s)"
+            android:textSize="30dp" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="60dp"
+            android:background="#000"></View>
+
+        <TextView
+            android:id="@+id/item_yellowtime"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="黄灯时长(s)"
+            android:textSize="30dp" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="60dp"
+            android:background="#000"></View>
+
+        <TextView
+            android:id="@+id/item_greentime"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="绿灯时长(s)"
+            android:textSize="30dp" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="60dp"
+            android:background="#000"></View>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#000"></View>
+</LinearLayout>

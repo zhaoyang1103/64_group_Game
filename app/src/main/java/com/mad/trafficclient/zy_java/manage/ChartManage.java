@@ -1,15 +1,22 @@
 package com.mad.trafficclient.zy_java.manage;
 
+import android.graphics.Color;
+
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -29,6 +36,7 @@ public class ChartManage {
         pieChart.setDrawHoleEnabled(false);
         pieChart.setTouchEnabled(false);
         pieChart.getLegend().setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);
+        pieChart.setUsePercentValues(true);
 
     }
 
@@ -67,13 +75,59 @@ public class ChartManage {
         for (int i = 0; i < y.size(); i++) {
             entries.add(new Entry(y.get(i), i));
         }
-        int[] ints = new int[]{};
+        int[] ints = new int[]{Color.BLUE, Color.RED};
 
         PieDataSet pieDataSet = new PieDataSet(entries, "");
+        pieDataSet.setColors(ints);
         PieData pieData = new PieData(x, pieDataSet);
+        pieDataSet.setValueFormatter(new PercentFormatter(new DecimalFormat("0.00")));
         pieChart.setData(pieData);
+        pieChart.invalidate();
+    }
 
+    public void showHoriChart(ArrayList<String> x, ArrayList<Float> y) {
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        for (int i = 0; i < y.size(); i++) {
+            entries.add(new BarEntry(y.get(i), i));
+        }
+        int[] ints = new int[]{Color.GREEN, Color.BLUE, Color.RED};
+        BarDataSet barDataSet = new BarDataSet(entries, "");
+        barDataSet.setColors(ints);
+        BarData barData = new BarData(x, barDataSet);
+        horizontalBarChart.setData(barData);
+        barDataSet.setValueFormatter(new PercentFormatter(new DecimalFormat("0.00")));
 
+        horizontalBarChart.invalidate();
+    }
+
+    public void showBarchart6(ArrayList<String> x, ArrayList<Float> y) {
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        for (int i = 0; i < y.size(); i++) {
+            entries.add(new BarEntry(y.get(i), i));
+        }
+        int[] ints = new int[]{Color.GREEN, Color.BLUE, Color.RED};
+        BarDataSet barDataSet = new BarDataSet(entries, "");
+        barDataSet.setColors(ints);
+        BarData barData = new BarData(x, barDataSet);
+        barDataSet.setValueFormatter(new PercentFormatter(new DecimalFormat("0.00")));
+
+        barChart.setData(barData);
+        barChart.invalidate();
+    }
+
+    public void showDoubleChart(ArrayList<String> x, ArrayList<float[]> y) {
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        for (int i = 0; i < y.size(); i++) {
+            entries.add(new BarEntry(y.get(i), i));
+        }
+        int[] ints = new int[]{Color.GREEN, Color.parseColor("#FF9800")};
+        BarDataSet barDataSet = new BarDataSet(entries, "");
+        barDataSet.setColors(ints);
+        BarData barData = new BarData(x, barDataSet);
+        barDataSet.setValueFormatter(new PercentFormatter(new DecimalFormat("0.00")));
+        barDataSet.setStackLabels(new String[]{"无违章","有违章"});
+        barChart.setData(barData);
+        barChart.invalidate();
     }
 
 }
