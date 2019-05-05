@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="achartengine">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/achartengine.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/android-async-http-1.4.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/eventbus-3.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/gson-2.8.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/MPAndroidChart-v2.1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/okhttp-3.11.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/okio-1.16.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/org.jbundle.util.osgi.wrapped.org.apache.http.client-4.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/ormlite-android-5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/ormlite-core-5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/volley.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/zxing-3.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

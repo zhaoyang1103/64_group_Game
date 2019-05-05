@@ -1,0 +1,129 @@
+{
+    "logs": [
+        {
+            "outputFile": "D:\\AndroidStudioProjects\\TrafficClient\\app\\build\\intermediates\\res\\merged\\release\\values-v11_values-v11.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\AndroidStudioProjects\\TrafficClient\\app\\src\\main\\res\\values-v11\\styles.xml",
+                    "from": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "182",
+                        "endLines": "8",
+                        "endColumns": "12",
+                        "endOffsets": "316"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "187"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\AndroidStudioProjects\\TrafficClient\\app\\build\\intermediates\\res\\merged\\release\\values-v14_values-v14.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\AndroidStudioProjects\\TrafficClient\\app\\src\\main\\res\\values-v14\\styles.xml",
+                    "from": {
+                        "startLines": "7",
+                        "startColumns": "4",
+                        "startOffsets": "225",
+                        "endLines": "9",
+                        "endColumns": "12",
+                        "endOffsets": "373"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "201"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\AndroidStudioProjects\\TrafficClient\\app\\build\\intermediates\\res\\merged\\release\\values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\AndroidStudioProjects\\TrafficClient\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "6,4,5,13,17,9,7,8,25,24,11,15,14,22,23,21,19,20,12,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "148,61,105,440,570,277,195,237,940,890,362,529,484,795,843,735,623,678,399,324",
+                        "endLines": "6,4,5,13,17,9,7,8,26,24,11,15,14,22,23,21,19,20,12,10",
+                        "endColumns": "46,43,42,43,47,46,41,39,57,49,36,39,44,47,46,59,54,56,40,37",
+                        "endOffsets": "190,100,143,479,613,319,232,272,1034,935,394,564,524,838,885,790,673,730,435,357"
+                    },
+                    "to": {
+                        "startLines": "14,15,16,17,18,19,20,21,22,24,25,26,27,28,29,30,31,32,33,34",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "605,652,696,739,783,831,878,920,960,1059,1109,1146,1186,1231,1279,1326,1386,1441,1498,1539",
+                        "endLines": "14,15,16,17,18,19,20,21,23,24,25,26,27,28,29,30,31,32,33,34",
+                        "endColumns": "46,43,42,43,47,46,41,39,57,49,36,39,44,47,46,59,54,56,40,37",
+                        "endOffsets": "647,691,734,778,826,873,915,955,1054,1104,1141,1181,1226,1274,1321,1381,1436,1493,1534,1572"
+                    }
+                },
+                {
+                    "source": "D:\\AndroidStudioProjects\\TrafficClient\\app\\src\\main\\res\\values\\dimens.xml",
+                    "from": {
+                        "startLines": "3,4",
+                        "startColumns": "4,4",
+                        "startOffsets": "92,151",
+                        "endColumns": "57,55",
+                        "endOffsets": "145,202"
+                    },
+                    "to": {
+                        "startLines": "12,13",
+                        "startColumns": "4,4",
+                        "startOffsets": "491,549",
+                        "endColumns": "57,55",
+                        "endOffsets": "544,600"
+                    }
+                },
+                {
+                    "source": "D:\\AndroidStudioProjects\\TrafficClient\\app\\src\\main\\res\\values\\colors.xml",
+                    "from": {
+                        "startLines": "3,13,11,4,5,7,8,9,10,6",
+                        "startColumns": "1,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "57,464,420,98,144,236,278,325,369,190",
+                        "endColumns": "36,39,40,44,44,40,45,42,49,44",
+                        "endOffsets": "92,499,456,138,184,272,319,363,414,230"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,95,135,176,221,266,307,353,396,446",
+                        "endColumns": "39,39,40,44,44,40,45,42,49,44",
+                        "endOffsets": "90,130,171,216,261,302,348,391,441,486"
+                    }
+                },
+                {
+                    "source": "D:\\AndroidStudioProjects\\TrafficClient\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "6,15,19,23",
+                        "startColumns": "4,4,0,5",
+                        "startOffsets": "192,525,686,840",
+                        "endLines": "12,17,21,25",
+                        "endColumns": "12,12,8,12",
+                        "endOffsets": "484,682,827,988"
+                    },
+                    "to": {
+                        "startLines": "35,42,45,48",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "1577,1868,2028,2172",
+                        "endLines": "41,44,47,50",
+                        "endColumns": "12,12,8,12",
+                        "endOffsets": "1863,2023,2167,2318"
+                    }
+                }
+            ]
+        }
+    ]
+}
