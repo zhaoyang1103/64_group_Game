@@ -38,6 +38,7 @@ public class Chart_6 extends Fragment {
 
         Map map = CarData.getMap();
         ChartManage chartManage = new ChartManage(barchart);
+        barchart.getLegend().setEnabled(false);
         chartManage.showBarchart6(((ArrayList<String>) map.get("x6")), ((ArrayList<Float>) map.get("y6")));
     }
 }
