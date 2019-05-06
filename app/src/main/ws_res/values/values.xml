@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ob1_spinner1">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="ob2_spinner1">
+        <item>时间升序</item>
+        <item>时间降序</item>
+    </string-array>
+</resources>
