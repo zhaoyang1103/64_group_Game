@@ -3,23 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
         android:layout_marginTop="40dp"
-        android:orientation="horizontal" >
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="right"
             android:text="服务器地址："
-            android:textColor="#1592d8" >
-        </TextView>
+            android:textColor="#1592d8"></TextView>
 
         <EditText
             android:id="@+id/edit_setting_url"
@@ -28,26 +28,28 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="left"
-            android:lines="1"
             android:hint="192.168.1.106"
+            android:lines="1"
+            android:singleLine="true"
             android:text="">
 
             <requestFocus />
         </EditText>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffffff"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="right"
             android:text="端口号："
-            android:textColor="#1592d8" >
-        </TextView>
+            android:textColor="#1592d8"></TextView>
 
         <EditText
             android:id="@+id/edit_setting_port"
@@ -56,13 +58,14 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="left"
-            android:lines="1"
             android:hint="8080"
+            android:inputType="number"
+            android:lines="1"
+            android:singleLine="true"
             android:text="">
 
         </EditText>
     </LinearLayout>
-
 
 
     <LinearLayout

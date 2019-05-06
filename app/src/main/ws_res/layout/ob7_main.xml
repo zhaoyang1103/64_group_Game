@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自动报警："
+            android:textColor="#111"
+            android:textSize="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开"
+            android:textColor="#111"
+            android:textSize="50dp" />
+
+        <Switch
+            android:id="@+id/ob7_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="关"
+            android:textOn="开"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#111" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="温        度："
+            android:textColor="#111"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@+id/ob7_edi_wendu"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="32"
+            android:inputType="number"
+            android:maxLines="1"
+            android:textColor="#111"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="湿        度："
+            android:textColor="#111"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@+id/ob7_edi_shidu"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="80"
+            android:inputType="number"
+            android:maxLines="1"
+            android:textColor="#111"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="光        照："
+            android:textColor="#111"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@+id/ob7_edi_guang"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="567"
+            android:inputType="number"
+            android:maxLines="1"
+            android:textColor="#111"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CO2         ："
+            android:textColor="#111"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@+id/ob7_edi_co2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="324"
+            android:inputType="number"
+            android:maxLines="1"
+            android:textColor="#111"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PM2.5     ："
+            android:textColor="#111"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@+id/ob7_edi_pm25"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="254"
+            android:inputType="number"
+            android:maxLines="1"
+            android:textColor="#111"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="道路状态："
+            android:textColor="#111"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@+id/ob7_edi_status"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="3"
+            android:inputType="number"
+            android:maxLines="1"
+            android:textColor="#111"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+</LinearLayout>

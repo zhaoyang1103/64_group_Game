@@ -16,10 +16,11 @@ import static android.content.Context.MODE_PRIVATE;
 public class Util {
 
     public static String urlHttp;
-    public static String urlPort ;
+    public static String urlPort;
 
     /**
      * 描述：保存数据到SharedPreferences对象中
+     *
      * @param ipUrl
      * @param ipPort
      */
@@ -34,17 +35,39 @@ public class Util {
 
     /**
      * 描述：获取数据到SharedPreferences对象中
+     *
      * @return
      */
     public static UrlBean loadSetting(Context context) {
-        UrlBean urlBean=new UrlBean();
+        UrlBean urlBean = new UrlBean();
 
         SharedPreferences loadSettingLoad = context.getSharedPreferences("setting", MODE_PRIVATE);
         //这里是将setting.xml 中的数据读出来
-        urlBean.setUrl( loadSettingLoad.getString("ipUrl", "") );
-        urlBean.setPort( loadSettingLoad.getString("ipPort", "") );
+        urlBean.setUrl(loadSettingLoad.getString("ipUrl", ""));
+        urlBean.setPort(loadSettingLoad.getString("ipPort", ""));
 
 //        String urlSetting = "http://" + urlHttp+ ":" + urlPort + "/";
         return urlBean;
     }
+
+    public static String getUserName(Context context) {
+        SharedPreferences userInfo = context.getSharedPreferences("userInfo", MODE_PRIVATE);
+        return userInfo.getString("UserName", "");
+    }
+
+    public static void setUserName(Context context, String UserName) {
+        SharedPreferences userInfo = context.getSharedPreferences("userInfo", MODE_PRIVATE);
+        userInfo.edit().putString("UserName", UserName).commit();
+    }
+
+    public static String getUserRole(Context context) {
+        SharedPreferences userInfo = context.getSharedPreferences("userInfo", MODE_PRIVATE);
+        return userInfo.getString("UserRole", "");
+    }
+
+    public static void setUserRole(Context context, String UserRole) {
+        SharedPreferences userInfo = context.getSharedPreferences("userInfo", MODE_PRIVATE);
+        userInfo.edit().putString("UserRole", UserRole).commit();
+    }
+
 }
