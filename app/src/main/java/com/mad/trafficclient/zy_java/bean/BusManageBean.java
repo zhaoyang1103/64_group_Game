@@ -51,6 +51,17 @@ public class BusManageBean {
         private int time;
         private int person;
 
+
+        public ROWSDETAILBean() {
+        }
+
+        public ROWSDETAILBean(int busId, int distance, int time, int person) {
+            BusId = busId;
+            Distance = distance;
+            this.time = time;
+            this.person = person;
+        }
+
         public int getTime() {
             return time;
         }
