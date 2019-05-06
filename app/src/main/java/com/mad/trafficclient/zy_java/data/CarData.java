@@ -1,6 +1,7 @@
 package com.mad.trafficclient.zy_java.data;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -60,12 +61,12 @@ public class CarData implements CarData_abs {
             e.printStackTrace();
         }
         api_1 = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_car_info";
-        api_2 = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_all_car_peccancy  ";
+        api_2 = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_all_car_peccancy";
         api_3 = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_all_user_info";
         api_4 = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_peccancy_type";
         getB1();
         getB2();
-        getB3();
+//        getB3();
         getB4();
 
     }
@@ -74,7 +75,7 @@ public class CarData implements CarData_abs {
     public void getData(String data) {
         switch (data) {
             case "zy":
-                if (flag == 4) {
+                if (flag == 3) {
                     dealData();
                     getTu1();
                     getTu2();
@@ -83,6 +84,7 @@ public class CarData implements CarData_abs {
                     getTu5();
                     getTu6();
                     getTu7();
+                    getB3();
                 }
                 break;
 
@@ -294,9 +296,9 @@ public class CarData implements CarData_abs {
                 floats[2]++;
             }
         }
-        y.add(floats[0]);
-        y.add(floats[1]);
-        y.add(floats[2]);
+        y.add(floats[0]*100/single_peccancy.size());
+        y.add(floats[1]*100/single_peccancy.size());
+        y.add(floats[2]*100/single_peccancy.size());
         map.put("x3", x);
         map.put("y3", y);
 
@@ -426,7 +428,8 @@ public class CarData implements CarData_abs {
         ArrayList<Float> y = new ArrayList<>();
         float[] floats = new float[12];
         for (int i = 0; i < allpeccancy_list.size(); i++) {
-            int hour = Integer.parseInt(allpeccancy_list.get(i).getDatetime().substring(13, 15));
+            int hour = Integer.parseInt(allpeccancy_list.get(i).getDatetime().substring(11, 13));
+//            Log.i("1datatat", "getTu6: "+allpeccancy_list.get(i).getDatetime());
             if (hour >= 22) {
                 floats[11]++;
             } else if (hour >= 20) {

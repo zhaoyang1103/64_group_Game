@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Zy_charmain extends Fragment {
+public class LineCharMain extends Fragment {
 
     private TextView tx_show;
     private ViewPager viewpager;
@@ -83,22 +83,22 @@ public class Zy_charmain extends Fragment {
                 glideview.setIndex(context, i);
                 switch (i) {
                     case 0:
-                        tx_show.setText("有违章车辆和无违章车辆的占比统计");
+                        tx_show.setText("温度");
                         break;
                     case 1:
-                        tx_show.setText("有无重复违章记录的车辆“的占比统计");
+                        tx_show.setText("湿度");
                         break;
                     case 2:
-                        tx_show.setText("违章车辆的违章次数占比分布");
+                        tx_show.setText("光照强度");
                         break;
                     case 3:
-                        tx_show.setText("年龄群体车辆违章的占比统计");
+                        tx_show.setText("co2");
                         break;
                     case 4:
-                        tx_show.setText("男性和女性有无车辆违章的占比统计");
+                        tx_show.setText("pm2.5");
                         break;
                     case 5:
-                        tx_show.setText("每日时段内车辆违章的占比统计");
+                        tx_show.setText("道路状况");
                         break;
                     case 6:
                         tx_show.setText("排名前十位的交通违法行为的占比统计");
