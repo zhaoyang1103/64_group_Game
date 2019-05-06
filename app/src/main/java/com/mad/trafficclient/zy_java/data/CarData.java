@@ -68,7 +68,6 @@ public class CarData implements CarData_abs {
         getB2();
         getB3();
         getB4();
-
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
