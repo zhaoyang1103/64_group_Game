@@ -66,7 +66,7 @@ public class CarData implements CarData_abs {
         api_4 = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_peccancy_type";
         getB1();
         getB2();
-        getB3();
+//        getB3();
         getB4();
 
     }
@@ -75,7 +75,7 @@ public class CarData implements CarData_abs {
     public void getData(String data) {
         switch (data) {
             case "zy":
-                if (flag == 4) {
+                if (flag == 3) {
                     dealData();
                     getTu1();
                     getTu2();
@@ -84,6 +84,7 @@ public class CarData implements CarData_abs {
                     getTu5();
                     getTu6();
                     getTu7();
+                    getB3();
                 }
                 break;
 
@@ -428,7 +429,7 @@ public class CarData implements CarData_abs {
         float[] floats = new float[12];
         for (int i = 0; i < allpeccancy_list.size(); i++) {
             int hour = Integer.parseInt(allpeccancy_list.get(i).getDatetime().substring(11, 13));
-            Log.i("1datatat", "getTu6: "+allpeccancy_list.get(i).getDatetime());
+//            Log.i("1datatat", "getTu6: "+allpeccancy_list.get(i).getDatetime());
             if (hour >= 22) {
                 floats[11]++;
             } else if (hour >= 20) {

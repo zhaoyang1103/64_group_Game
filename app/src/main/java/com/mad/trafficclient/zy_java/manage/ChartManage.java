@@ -4,6 +4,7 @@ import android.graphics.Color;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -12,6 +13,8 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
@@ -26,6 +29,7 @@ public class ChartManage {
     private PieChart pieChart;
     private BarChart barChart;
     private HorizontalBarChart horizontalBarChart;
+    private LineChart lineChart;
     private XAxis xAxis;
     private YAxis yleft, yright;
 
@@ -68,6 +72,17 @@ public class ChartManage {
         yleft.setEnabled(false);
         horizontalBarChart.setTouchEnabled(false);
 
+    }
+
+    public ChartManage(LineChart lineChart) {
+        this.lineChart = lineChart;
+        xAxis = lineChart.getXAxis();
+        yleft = lineChart.getAxisLeft();
+        yright = lineChart.getAxisRight();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        yright.setEnabled(false);
+        xAxis.setDrawGridLines(false);
+        lineChart.setDescription("");
     }
 
     public void showPieChart(ArrayList<String> x, ArrayList<Float> y) {
@@ -125,9 +140,21 @@ public class ChartManage {
         barDataSet.setColors(ints);
         BarData barData = new BarData(x, barDataSet);
         barDataSet.setValueFormatter(new PercentFormatter(new DecimalFormat("0.00")));
-        barDataSet.setStackLabels(new String[]{"无违章","有违章"});
+        barDataSet.setStackLabels(new String[]{"无违章", "有违章"});
         barChart.setData(barData);
         barChart.invalidate();
+    }
+
+    public void showLineChart(ArrayList<String> x, ArrayList<Float> y) {
+        ArrayList<Entry> entries = new ArrayList<>();
+        for (int i = 0; i < y.size(); i++) {
+            entries.add(new Entry(y.get(i), i));
+        }
+        LineDataSet lineDataSet = new LineDataSet(entries, "");
+        lineDataSet.setColor(Color.BLACK);
+        LineData lineData = new LineData(x, lineDataSet);
+        lineChart.setData(lineData);
+        lineChart.invalidate();
     }
 
 }
