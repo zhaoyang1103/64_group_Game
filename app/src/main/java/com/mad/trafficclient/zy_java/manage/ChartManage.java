@@ -145,7 +145,7 @@ public class ChartManage {
         barChart.invalidate();
     }
 
-    public void showLineChart(ArrayList<String> x, ArrayList<Float> y) {
+    public void showLineChart(ArrayList<String> x, ArrayList<Integer> y) {
         ArrayList<Entry> entries = new ArrayList<>();
         for (int i = 0; i < y.size(); i++) {
             entries.add(new Entry(y.get(i), i));

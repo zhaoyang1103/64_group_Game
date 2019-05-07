@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
@@ -28,6 +29,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.mad.trafficclient.R;
 import com.mad.trafficclient.util.Util;
+import com.mad.trafficclient.zy_java.fragment.LineCharMain;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,7 +50,7 @@ public class Sense_Main extends Fragment {
     private Timer timer;
     private int count;
     private SenseAdapter adapter;
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             Log.i("Sense_Main", "count" + ":" + count);
@@ -69,9 +71,9 @@ public class Sense_Main extends Fragment {
         context = getContext();
         senseDao = new SenseDao(context);
         list = new ArrayList<>();
-        adapter = new SenseAdapter(context,list);
+        adapter = new SenseAdapter(context, list);
         ob5_gridview.setAdapter(adapter);
-        indexBean=new IndexBean();
+        indexBean = new IndexBean();
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -80,11 +82,11 @@ public class Sense_Main extends Fragment {
                 GetAllSense();
                 GetRoadStatus();
             }
-        },0,3000);
+        }, 0, 3000);
         return view;
     }
 
-    public void GetAllSense(){
+    public void GetAllSense() {
         String URL = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_all_sense";
 
         try {
@@ -95,15 +97,15 @@ public class Sense_Main extends Fragment {
             requestQueue.add(new JsonObjectRequest(Request.Method.POST, URL, jsonObject, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject jsonObject) {
-                    if (jsonObject.optString("RESULT").equals("S")){
-                        list.add(0,new SenseBean("温度",jsonObject.optInt("temperature"),SenseUtil.getYuzhi(context,"wendu")));
-                        list.add(1,new SenseBean("湿度",jsonObject.optInt("humidity"),SenseUtil.getYuzhi(context,"shidu")));
-                        list.add(2,new SenseBean("光照强度",jsonObject.optInt("LightIntensity"),SenseUtil.getYuzhi(context,"guang")));
-                        list.add(3,new SenseBean("Co2",jsonObject.optInt("co2"),SenseUtil.getYuzhi(context,"co2")));
-                        list.add(4,new SenseBean("PM2.5",jsonObject.optInt("pm2.5"),SenseUtil.getYuzhi(context,"pm25")));
+                    if (jsonObject.optString("RESULT").equals("S")) {
+                        list.add(0, new SenseBean("温度", jsonObject.optInt("temperature"), SenseUtil.getYuzhi(context, "wendu")));
+                        list.add(1, new SenseBean("湿度", jsonObject.optInt("humidity"), SenseUtil.getYuzhi(context, "shidu")));
+                        list.add(2, new SenseBean("光照强度", jsonObject.optInt("LightIntensity"), SenseUtil.getYuzhi(context, "guang")));
+                        list.add(3, new SenseBean("Co2", jsonObject.optInt("co2"), SenseUtil.getYuzhi(context, "co2")));
+                        list.add(4, new SenseBean("PM2.5", jsonObject.optInt("pm2.5"), SenseUtil.getYuzhi(context, "pm25")));
                         indexBean = new Gson().fromJson(jsonObject.toString(), IndexBean.class);
                         indexBean.setTime(new SimpleDateFormat("hh:mm").format(System.currentTimeMillis()));
-                        count+=5;
+                        count += 5;
                         handler.sendEmptyMessage(0);
                     }
                 }
@@ -118,20 +120,21 @@ public class Sense_Main extends Fragment {
         }
 
     }
-    public void GetRoadStatus(){
+
+    public void GetRoadStatus() {
         String URL = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_road_status";
 
         try {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("RoadId",1);
+            jsonObject.put("RoadId", 1);
             jsonObject.put("UserName", Util.getUserName(context));
 
             RequestQueue requestQueue = Volley.newRequestQueue(context);
             requestQueue.add(new JsonObjectRequest(Request.Method.POST, URL, jsonObject, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject jsonObject) {
-                    if (jsonObject.optString("RESULT").equals("S")){
-                        list.add(new SenseBean("道路状态",jsonObject.optInt("Status"),SenseUtil.getYuzhi(context,"status")));
+                    if (jsonObject.optString("RESULT").equals("S")) {
+                        list.add(new SenseBean("道路状态", jsonObject.optInt("Status"), SenseUtil.getYuzhi(context, "status")));
                         count++;
                         indexBean.setStatus(jsonObject.optInt("Status"));
                         senseDao.add(indexBean);
@@ -152,6 +155,13 @@ public class Sense_Main extends Fragment {
 
     private void initView(View view) {
         ob5_gridview = (GridView) view.findViewById(R.id.ob5_gridview);
+        ob5_gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                getFragmentManager().beginTransaction().addToBackStack(null).hide(Sense_Main.this).add(R.id.maincontent, LineCharMain.getIntance(position)).commit();
+            }
+        });
+
     }
 
     @Override

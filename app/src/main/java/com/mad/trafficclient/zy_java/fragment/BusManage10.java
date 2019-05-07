@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 import com.mad.trafficclient.R;
 import com.mad.trafficclient.util.Util;
 import com.mad.trafficclient.zy_java.bean.BusManageBean;
+import com.mad.trafficclient.zy_java.view.BusDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,6 +54,7 @@ public class BusManage10 extends Fragment implements View.OnClickListener {
     private List<Integer> listper = new ArrayList<>();
     private Timer timer;
     private ExpandBusAdapter adapter;
+    private BusDialog busDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,6 +76,13 @@ public class BusManage10 extends Fragment implements View.OnClickListener {
         api_getdis = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_bus_station_info";
         api_getperosn = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_bus_capacity";
         initData();
+        busDialog = new BusDialog(context);
+        bt_showxiangqing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                busDialog.show();
+            }
+        });
 
     }
 
@@ -86,6 +95,7 @@ public class BusManage10 extends Fragment implements View.OnClickListener {
             }
             tx_allperson.setText("当前承载能力" + all + "人");
             adapter.notifyDataSetChanged();
+            busDialog.notAdatter(listper);
             super.handleMessage(msg);
         }
     };

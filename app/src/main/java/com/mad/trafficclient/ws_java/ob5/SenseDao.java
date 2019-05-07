@@ -13,6 +13,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static android.util.Log.i;
+
 /**
  * Created by Go_Fight_Now on 2019/5/6 16:48
  */
@@ -43,6 +45,7 @@ public class SenseDao {
         List<IndexBean> indexBeans = new ArrayList<>();
         try {
             indexBeans = dao.queryForAll();
+            List<IndexBean> list = new ArrayList<>();
             Collections.sort(indexBeans, new Comparator<IndexBean>() {
                 @Override
                 public int compare(IndexBean o1, IndexBean o2) {
@@ -50,12 +53,14 @@ public class SenseDao {
                 }
             });
             if (indexBeans.size() > 20) {
-                for (int i = 20; i < indexBeans.size(); i++) {
-                    indexBeans.remove(i);
+
+                for (int i = 0; i < 20; i++) {
+                    list.add(indexBeans.get(i));
                 }
 
             }
-
+            i("SenseDao尺寸", "" + indexBeans.size());
+            return list;
 
         } catch (SQLException e) {
             e.printStackTrace();

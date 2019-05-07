@@ -12,7 +12,12 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".zy_java.acticity.Zy_VideoPlayActivity"></activity>
+        <service
+            android:name=".zy_java.server.MyService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".zy_java.acticity.Zy_VideoPlayActivity" />
         <activity
             android:name=".GuideActivity"
             android:screenOrientation="landscape">

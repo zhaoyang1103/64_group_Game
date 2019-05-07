@@ -83,6 +83,7 @@ public class CarData implements CarData_abs {
                     getTu5();
                     getTu6();
                     getTu7();
+                    flag++;
 //                    getB3();
                 }
                 break;
@@ -204,6 +205,11 @@ public class CarData implements CarData_abs {
             for (int j = 0; j < allpeccancy_list.size(); j++) {
                 if (allcar_list.get(i).getCarnumber().equals(allpeccancy_list.get(j).getCarnumber())) {
                     int count = allcar_list.get(i).getCount();
+                    if(count>=1)
+                    {
+                        continue;
+                    }
+
                     count++;
                     allcar_list.get(i).setCount(count);
                 }
