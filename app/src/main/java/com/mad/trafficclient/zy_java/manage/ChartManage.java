@@ -150,7 +150,19 @@ public class ChartManage {
         for (int i = 0; i < y.size(); i++) {
             entries.add(new Entry(y.get(i), i));
         }
+        int[] ints = new int[y.size()];
+        for (int i = 0; i < y.size(); i++) {
+            if (y.get(i)> 20) {
+                ints[i] = Color.RED;
+            } else {
+                ints[i] = Color.GREEN;
+
+            }
+        }
+
         LineDataSet lineDataSet = new LineDataSet(entries, "");
+        //lineDataSet;
+        lineDataSet.setCircleColors(ints);
         lineDataSet.setColor(Color.BLACK);
         LineData lineData = new LineData(x, lineDataSet);
         lineChart.setData(lineData);
