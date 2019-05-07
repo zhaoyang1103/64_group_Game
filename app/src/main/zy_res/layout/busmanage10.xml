@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#9C9797"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+
+            android:src="@drawable/bus_1" />
+
+        <TextView
+            style="@style/texystyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:text="901公交汽车"
+            android:textSize="25dp" />
+
+        <TextView
+            style="@style/texystyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+
+            android:text="首:6:00末:21:00"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/tx_allperson"
+            style="@style/texystyle"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="当前承载能力:1000人"
+            android:textSize="25dp" />
+
+        <Button
+            android:id="@+id/bt_showxiangqing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/xiangqing_back"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:text="详情" />
+    </LinearLayout>
+
+    <ExpandableListView
+        android:id="@+id/expand_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ExpandableListView>
+</LinearLayout>

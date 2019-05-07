@@ -3,10 +3,12 @@ package com.mad.trafficclient.ws_java.ob5;
 
 import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 /**
  * Created by Go_Fight_Now on 2019/5/6 18:00
  */
+@DatabaseTable(tableName = "ob5_table")
 public class IndexBean {
 
     /**

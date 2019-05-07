@@ -66,16 +66,15 @@ public class CarData implements CarData_abs {
         api_4 = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_peccancy_type";
         getB1();
         getB2();
-//        getB3();
+        getB3();
         getB4();
-
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getData(String data) {
         switch (data) {
             case "zy":
-                if (flag == 3) {
+                if (flag == 4) {
                     dealData();
                     getTu1();
                     getTu2();
@@ -84,7 +83,8 @@ public class CarData implements CarData_abs {
                     getTu5();
                     getTu6();
                     getTu7();
-                    getB3();
+                    flag++;
+//                    getB3();
                 }
                 break;
 
@@ -205,6 +205,11 @@ public class CarData implements CarData_abs {
             for (int j = 0; j < allpeccancy_list.size(); j++) {
                 if (allcar_list.get(i).getCarnumber().equals(allpeccancy_list.get(j).getCarnumber())) {
                     int count = allcar_list.get(i).getCount();
+                    if(count>=1)
+                    {
+                        continue;
+                    }
+
                     count++;
                     allcar_list.get(i).setCount(count);
                 }
