@@ -10,6 +10,8 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.mad.trafficclient.ws_java.ob1.AccountBean;
 import com.mad.trafficclient.ws_java.ob5.IndexBean;
+import com.mad.trafficclient.ws_java.ob9.JiluBean;
+import com.mad.trafficclient.ws_java.ob5.IndexBean;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -28,6 +30,7 @@ public class MyHelper extends OrmLiteSqliteOpenHelper {
         try {
             TableUtils.createTableIfNotExists(connectionSource, AccountBean.class);
             TableUtils.createTableIfNotExists(connectionSource, IndexBean.class);
+            TableUtils.createTableIfNotExists(connectionSource, JiluBean.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }
