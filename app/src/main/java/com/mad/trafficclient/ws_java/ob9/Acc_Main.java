@@ -3,6 +3,7 @@ package com.mad.trafficclient.ws_java.ob9;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -32,8 +33,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.mad.trafficclient.R;
 import com.mad.trafficclient.util.Util;
-import com.mad.trafficclient.ws_java.ob1.AccountBean;
-import com.mad.trafficclient.ws_java.ob1.AccountDao;
+import com.mad.trafficclient.ws_java.ob23.BalanceUtil;
 import com.mad.trafficclient.zy_java.data.CarData;
 
 import org.json.JSONException;
@@ -101,8 +101,6 @@ public class Acc_Main extends Fragment implements View.OnClickListener {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
                         if (jsonObject.optString("RESULT").equals("S")) {
-                            Log.i("Acc_Main", "Allcar_list().size()" + ":" + CarData.getAllcar_list().size());
-                            Log.i("Acc_Main", "getallperson_list().size()" + ":" + CarData.getallperson_list().size());
                             for (int i = 0; i < CarData.getAllcar_list().size(); i++) {
                                 for (int j = 0; j < CarData.getallperson_list().size(); j++) {
                                     if (CarData.getAllcar_list().get(i).getPcardid().equals(CarData.getallperson_list().get(j).getPcardid())) {
@@ -319,6 +317,9 @@ public class Acc_Main extends Fragment implements View.OnClickListener {
                     checkbox.set(position, isChecked);
                 }
             });
+            if (list.get(position).getBalance() > BalanceUtil.getBalanceYuzhi(context)) {
+                viewHolder.ob9_tv_background.setBackgroundColor(Color.YELLOW);
+            }
             viewHolder.ob9_btn_chongzhi.setOnClickListener(new View.OnClickListener() {
 
 
