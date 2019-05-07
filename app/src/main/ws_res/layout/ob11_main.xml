@@ -31,10 +31,18 @@
                 android:layout_weight="1"
                 android:entries="@array/ob11_spinner1" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2" />
+                android:gravity="center"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:id="@+id/ob11_img_light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ob11_light"/>
+            </LinearLayout>
 
             <Button
                 android:id="@+id/ob11_btn_chaxun"
