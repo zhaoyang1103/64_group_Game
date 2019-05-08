@@ -10,4 +10,12 @@
         <item>黄灯升序</item>
         <item>黄灯降序</item>
     </string-array>
+    <string-array name="message_sort">
+        <item>全部</item>
+        <item>温度</item>
+        <item>湿度</item>
+        <item>co2</item>
+        <item>光照强度</item>
+        <item>PM2.5</item>
+    </string-array>
 </resources>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="室外空气指数"
+            android:textColor="#111"
+            android:textSize="60dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ob25_tv_pm25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:text="PM2.5："
+            android:textColor="#111"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ob25_tv_wendu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:text="温   度："
+            android:textColor="#111"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ob25_tv_shidu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:text="湿   度："
+            android:textColor="#111"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ob25_tv_road_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1号道路：爆表"
+                android:gravity="center"
+                android:textSize="50dp"
+                android:textColor="#111"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/ob25_bg_1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#4c060e"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ob25_tv_road_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2号道路：拥挤"
+                android:gravity="center"
+                android:textSize="50dp"
+                android:textColor="#111"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/ob25_bg_2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#ffff01"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ob25_tv_road_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3号道路：通畅"
+                android:gravity="center"
+                android:textSize="50dp"
+                android:textColor="#111"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/ob25_bg_3"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#0ebd12"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

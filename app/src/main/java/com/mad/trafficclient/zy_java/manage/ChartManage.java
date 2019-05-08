@@ -150,11 +150,44 @@ public class ChartManage {
         for (int i = 0; i < y.size(); i++) {
             entries.add(new Entry(y.get(i), i));
         }
+        int[] ints = new int[y.size()];
+        for (int i = 0; i < y.size(); i++) {
+            if (y.get(i) > 20) {
+                ints[i] = Color.RED;
+            } else {
+                ints[i] = Color.GREEN;
+
+            }
+        }
+
         LineDataSet lineDataSet = new LineDataSet(entries, "");
+        //lineDataSet;
+        lineDataSet.setCircleColors(ints);
         lineDataSet.setColor(Color.BLACK);
         LineData lineData = new LineData(x, lineDataSet);
         lineChart.setData(lineData);
         lineChart.invalidate();
+    }
+
+    public void showMessagePieChart(ArrayList<String> x, ArrayList<Integer> y) {
+        ArrayList<Entry> entries = new ArrayList<>();
+        for (int i = 0; i < y.size(); i++) {
+            entries.add(new Entry(y.get(i), i));
+        }
+        int[] ints = new int[]{Color.parseColor("#BFDD7C")
+                , Color.parseColor("#E3DCA2"),
+                Color.parseColor("#79EA5B"),
+                Color.parseColor("#EE81B6"),
+                Color.parseColor("#FF25B4")};
+
+        PieDataSet pieDataSet = new PieDataSet(entries, "");
+        pieDataSet.setColors(ints);
+        PieData pieData = new PieData(x, pieDataSet);
+        pieDataSet.setValueFormatter(new PercentFormatter(new DecimalFormat("0.00")));
+        pieChart.getLegend().setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
+        pieData.setValueTextSize(0);
+        pieChart.setData(pieData);
+        pieChart.invalidate();
     }
 
 }

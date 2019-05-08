@@ -105,7 +105,8 @@ public class LineCharMain extends Fragment {
 
             @Override
             public void onPageScrollStateChanged(int i) {
-
+//                glideview.setIndex(context, i);
+//                getshow(i);
             }
         });
 
