@@ -175,7 +175,7 @@ public class ChartManage {
             entries.add(new Entry(y.get(i), i));
         }
         int[] ints = new int[]{Color.parseColor("#BFDD7C")
-                ,Color.parseColor("#E3DCA2"),
+                , Color.parseColor("#E3DCA2"),
                 Color.parseColor("#79EA5B"),
                 Color.parseColor("#EE81B6"),
                 Color.parseColor("#FF25B4")};
@@ -183,9 +183,9 @@ public class ChartManage {
         PieDataSet pieDataSet = new PieDataSet(entries, "");
         pieDataSet.setColors(ints);
         PieData pieData = new PieData(x, pieDataSet);
-
         pieDataSet.setValueFormatter(new PercentFormatter(new DecimalFormat("0.00")));
         pieChart.getLegend().setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
+        pieData.setValueTextSize(0);
         pieChart.setData(pieData);
         pieChart.invalidate();
     }

@@ -15,7 +15,7 @@
         <item>温度</item>
         <item>湿度</item>
         <item>co2</item>
-        <item>光照</item>
+        <item>光照强度</item>
         <item>PM2.5</item>
     </string-array>
 </resources>

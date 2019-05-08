@@ -3,9 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/tx_shwohsow_message"
+        style="@style/texystyle"
+        android:text="实时数据分析"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+
     <com.github.mikephil.charting.charts.PieChart
-        android:layout_margin="200dp"
         android:id="@+id/piechart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.github.mikephil.charting.charts.PieChart>
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_margin="100dp"></com.github.mikephil.charting.charts.PieChart>
 </RelativeLayout>

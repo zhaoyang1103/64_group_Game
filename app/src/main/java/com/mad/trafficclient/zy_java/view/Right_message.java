@@ -5,6 +5,8 @@ package com.mad.trafficclient.zy_java.view;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +40,15 @@ public class Right_message extends Fragment {
     private Context context;
     private Timer timer;
     private ChartManage chartManage;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            chartManage.showMessagePieChart(x, y);
+            super.handleMessage(msg);
+        }
+    };
+    private ArrayList<String> x;
+    private ArrayList<Integer> y;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,7 +68,19 @@ public class Right_message extends Fragment {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                GetAllSense();
+//                GetAllSense();
+                int[] tu = Left_Message.getTu();
+                x = new ArrayList<>();
+                y = new ArrayList<>();
+                x.add("PM2.5  " + tu[0]);
+                x.add("光照  " + tu[1]);
+                x.add("温度  " + tu[2]);
+                x.add("湿度  " + tu[3]);
+                x.add("CO2  " + tu[4]);
+                for (int i = 0; i < tu.length; i++) {
+                    y.add(tu[i]);
+                }
+                handler.sendEmptyMessage(0);
             }
         }, 0, 3000);
     }

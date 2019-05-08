@@ -6,6 +6,7 @@ package com.mad.trafficclient.zy_java.view;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,8 @@ public class Left_Message extends Fragment {
     private TextView tx_message_show;
     private Timer timer;
     private LeftMessageAdapter adapter;
-    private String[] indexName = {"全部","温度", "湿度", "co2", "光照强度", "PM2.5"};
+    private String[] indexName = {"全部", "温度", "湿度", "co2", "光照强度", "PM2.5"};
+    private static int[] tu = new int[5];
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +61,14 @@ public class Left_Message extends Fragment {
 
         initView(view);
         return view;
+    }
+
+    public static int[] getTu() {
+        return tu;
+    }
+
+    public static void setTu(int[] tu) {
+        Left_Message.tu = tu;
     }
 
     private void initView(View view) {
@@ -71,32 +81,25 @@ public class Left_Message extends Fragment {
 
         tx_message_show = (TextView) view.findViewById(R.id.tx_message_show);
 
-        adapter = new LeftMessageAdapter();
+        adapter = new LeftMessageAdapter(list_yuizhi);
         list_message.setAdapter(adapter);
         timer = new Timer();
-        GetAllSense();
-//        timer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        }, 0, 3000);
-        spinner_message.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                GetAllSense();
+            }
+        }, 0, 3000);
+        spinner_message.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()     {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String s = indexName[position];
-                if (s != "全部") {
-                    for (int i = 0; i < list_yuizhi.size(); i++) {
-                        if (!list_yuizhi.get(i).getName().equals(s)) {
-                            list_yuizhi.remove(i);
-                        }
+                String name = spinner_message.getSelectedItem().toString();
+                junInitnData(name);
+//                if (name.equals("全部")) {
+//                    GetAllSense();
+//                }
+                adapter.notifyDataSetChanged();
 
-                    }
-                    adapter.notifyDataSetChanged();
-
-                } else {
-                    GetAllSense();
-                }
             }
 
             @Override
@@ -104,6 +107,30 @@ public class Left_Message extends Fragment {
 
             }
         });
+    }
+
+    private void junInitnData(String name) {
+        List<SenseBean> list = new ArrayList<>();
+        if (!name.equals("全部")) {
+            for (int i = 0; i < list_yuizhi.size(); i++) {
+                if (list_yuizhi.get(i).getName().equals(name)) {
+                    list.add(list_yuizhi.get(i));
+                    break;
+                }
+
+            }
+            adapter = new LeftMessageAdapter(list);
+            list_message.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }
+        else {
+            adapter = new LeftMessageAdapter(list_yuizhi);
+            list_message.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }
+//        else {
+//            GetAllSense();
+//        }
     }
 
     @Override
@@ -128,21 +155,26 @@ public class Left_Message extends Fragment {
                         IndexBean indexBean = gson.fromJson(jsonObject.toString(), IndexBean.class);
                         if (indexBean.getTemperature() > SenseUtil.getYuzhi(context, "wendu")) {
                             list_yuizhi.add(new SenseBean("温度", indexBean.getTemperature(), SenseUtil.getYuzhi(context, "wendu")));
+                            tu[2]++;
                         }
                         if (indexBean.getHumidity() > SenseUtil.getYuzhi(context, "shidu")) {
-                            list_yuizhi.add(new SenseBean("湿度", indexBean.getHumidity(), SenseUtil.getYuzhi(context, "wendu")));
+                            tu[3]++;
+                            list_yuizhi.add(new SenseBean("湿度", indexBean.getHumidity(), SenseUtil.getYuzhi(context, "shidu")));
                         }
                         if (indexBean.getLightIntensity() > SenseUtil.getYuzhi(context, "guang")) {
-                            list_yuizhi.add(new SenseBean("光照强度", indexBean.getLightIntensity(), SenseUtil.getYuzhi(context, "wendu")));
+                            tu[1]++;
+                            list_yuizhi.add(new SenseBean("光照强度", indexBean.getLightIntensity(), SenseUtil.getYuzhi(context, "guang")));
                         }
                         if (indexBean.getCo2() > SenseUtil.getYuzhi(context, "co2")) {
-                            list_yuizhi.add(new SenseBean("co2", indexBean.getCo2(), SenseUtil.getYuzhi(context, "wendu")));
+                            tu[4]++;
+                            list_yuizhi.add(new SenseBean("co2", indexBean.getCo2(), SenseUtil.getYuzhi(context, "co2")));
                         }
                         if (indexBean.get_$Pm25316() > SenseUtil.getYuzhi(context, "pm25")) {
-                            list_yuizhi.add(new SenseBean("PM2.5", indexBean.get_$Pm25316(), SenseUtil.getYuzhi(context, "wendu")));
+                            tu[0]++;
+                            list_yuizhi.add(new SenseBean("PM2.5", indexBean.get_$Pm25316(), SenseUtil.getYuzhi(context, "pm25")));
                         }
-
-                        GetRoadStatus();
+                        junInitnData(spinner_message.getSelectedItem().toString());
+                        adapter.notifyDataSetChanged();
 
                     }
                 }
@@ -173,9 +205,9 @@ public class Left_Message extends Fragment {
                     if (jsonObject.optString("RESULT").equals("S")) {
                         try {
                             if (jsonObject.getInt("Status") > SenseUtil.getYuzhi(context, "pm25")) {
-                                list_yuizhi.add(new SenseBean("pm2.5", jsonObject.getInt("Status"), SenseUtil.getYuzhi(context, "status")));
+//                                list_yuizhi.add(new SenseBean("道路状况", jsonObject.getInt("Status"), SenseUtil.getYuzhi(context, "status")));
                             }
-                            adapter.notifyDataSetChanged();
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -196,8 +228,21 @@ public class Left_Message extends Fragment {
 
 
     class LeftMessageAdapter extends BaseAdapter {
+        private List<SenseBean> list_yuzhi;
+
+        public LeftMessageAdapter(List<SenseBean> list_yuzhi) {
+            this.list_yuzhi = list_yuzhi;
+        }
+
         @Override
         public int getCount() {
+            if (list_yuizhi.size() == 0) {
+                tx_message_show.setText("当前还未有报警信息");
+
+            } else {
+                tx_message_show.setText("");
+
+            }
             return list_yuizhi.size();
         }
 
@@ -215,6 +260,11 @@ public class Left_Message extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = View.inflate(context, R.layout.item_left_message, null);
             ViewHolder viewHolder = new ViewHolder(convertView);
+            if (list_yuizhi.size() == 0) {
+                tx_message_show.setText("当前还未有报警信息");
+
+            }
+//            if(spinner_message.getSelectedItem().toString())
             viewHolder.item_xuahoa.setText((position + 1) + "");
             viewHolder.item_baojingleixing.setText("【" + list_yuizhi.get(position).getName() + "】报警");
             viewHolder.item_yuzhi.setText(list_yuizhi.get(position).getYuzhi() + "");

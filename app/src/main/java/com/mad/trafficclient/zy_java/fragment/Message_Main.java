@@ -24,6 +24,8 @@ public class Message_Main extends Fragment implements View.OnClickListener {
     private TextView message_query;
     private TextView message_fenxi;
     private FragmentTransaction fragmentTransaction;
+    private Left_Message left_message;
+    private Right_message right_message;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +45,11 @@ public class Message_Main extends Fragment implements View.OnClickListener {
         message_fenxi.setOnClickListener(this);
         message_query.setBackgroundResource(R.drawable.back_mymessage_2);
         message_fenxi.setBackgroundResource(R.drawable.back_mymessage);
-        getFragmentManager().beginTransaction().replace(R.id.fragment_test, new Left_Message()).commit();
+        left_message = new Left_Message();
+        right_message = new Right_message();
+        getFragmentManager().beginTransaction().add(R.id.fragment_test, left_message).commit();
+        getFragmentManager().beginTransaction().add(R.id.fragment_test, right_message).commit();
+        getFragmentManager().beginTransaction().hide(right_message).commit();
 
     }
 
@@ -51,12 +57,15 @@ public class Message_Main extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.message_query:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_test, new Left_Message()).commit();
+                getFragmentManager().beginTransaction().show(left_message).commit();
+                getFragmentManager().beginTransaction().hide(right_message).commit();
+
                 message_query.setBackgroundResource(R.drawable.back_mymessage_2);
                 message_fenxi.setBackgroundResource(R.drawable.back_mymessage);
                 break;
             case R.id.message_fenxi:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_test, new Right_message()).commit();
+                getFragmentManager().beginTransaction().show(right_message).commit();
+                getFragmentManager().beginTransaction().hide(left_message).commit();
                 message_query.setBackgroundResource(R.drawable.back_mymessage);
                 message_fenxi.setBackgroundResource(R.drawable.back_mymessage_2);
                 break;
