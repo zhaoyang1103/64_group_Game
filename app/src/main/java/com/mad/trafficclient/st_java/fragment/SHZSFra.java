@@ -1,10 +1,13 @@
 package com.mad.trafficclient.st_java.fragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,17 +24,29 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.google.gson.Gson;
 import com.mad.trafficclient.R;
 import com.mad.trafficclient.st_java.bean.Get_all_sense;
 import com.mad.trafficclient.st_java.bean.Get_weather;
+import com.mad.trafficclient.st_java.fragment.shzsfraxia.SHZSFraXia1;
+import com.mad.trafficclient.st_java.fragment.shzsfraxia.SHZSFraXia2;
+import com.mad.trafficclient.st_java.fragment.shzsfraxia.SHZSFraXia3;
+import com.mad.trafficclient.st_java.fragment.shzsfraxia.SHZSFraXia4;
 import com.mad.trafficclient.util.UrlBean;
 import com.mad.trafficclient.util.Util;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -53,6 +68,8 @@ public class SHZSFra extends Fragment {
     private Timer timer;
     private ArrayList<ZhongBean> zhongBeans;
     private ZhongAda zhongAda;
+    private ArrayList<Fragment> fragments;
+    private SharedPreferences shzsFra_sp;
 
     @Nullable
     @Override
@@ -68,46 +85,87 @@ public class SHZSFra extends Fragment {
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                shangData();
+            }
+        });
 
+        tv_bottom_1.setBackgroundResource(R.drawable.tv_back_shzs_on);
+        tv_bottom_2.setBackgroundResource(R.drawable.tv_back_shzs_off);
+        tv_bottom_3.setBackgroundResource(R.drawable.tv_back_shzs_off);
+        tv_bottom_4.setBackgroundResource(R.drawable.tv_back_shzs_off);
+
+        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                        tv_bottom_1.setBackgroundResource(R.drawable.tv_back_shzs_on);
+                        tv_bottom_2.setBackgroundResource(R.drawable.tv_back_shzs_off);
+                        tv_bottom_3.setBackgroundResource(R.drawable.tv_back_shzs_off);
+                        tv_bottom_4.setBackgroundResource(R.drawable.tv_back_shzs_off);
+                        break;
+                    case 1:
+                        tv_bottom_1.setBackgroundResource(R.drawable.tv_back_shzs_off);
+                        tv_bottom_2.setBackgroundResource(R.drawable.tv_back_shzs_on);
+                        tv_bottom_3.setBackgroundResource(R.drawable.tv_back_shzs_off);
+                        tv_bottom_4.setBackgroundResource(R.drawable.tv_back_shzs_off);
+                        break;
+                    case 2:
+                        tv_bottom_1.setBackgroundResource(R.drawable.tv_back_shzs_off);
+                        tv_bottom_2.setBackgroundResource(R.drawable.tv_back_shzs_off);
+                        tv_bottom_3.setBackgroundResource(R.drawable.tv_back_shzs_on);
+                        tv_bottom_4.setBackgroundResource(R.drawable.tv_back_shzs_off);
+                        break;
+                    case 3:
+                        tv_bottom_1.setBackgroundResource(R.drawable.tv_back_shzs_off);
+                        tv_bottom_2.setBackgroundResource(R.drawable.tv_back_shzs_off);
+                        tv_bottom_3.setBackgroundResource(R.drawable.tv_back_shzs_off);
+                        tv_bottom_4.setBackgroundResource(R.drawable.tv_back_shzs_on);
+                        break;
+                    default:
+                        break;
+                }
+                super.onPageSelected(position);
+            }
+        });
+
+        tv_bottom_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(0);
+            }
+        });
+        tv_bottom_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(1);
+            }
+        });
+        tv_bottom_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(2);
+            }
+        });
+        tv_bottom_4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(3);
             }
         });
     }
 
     private void initData() {
-        /**
-         * 上部   气象信息查询http://localhost:8080/api/v2/get_weather
-         */
-
         context = getContext();
         urlBean = Util.loadSetting(context);
         userName = Util.getUserName(context);
         requestQueue = Volley.newRequestQueue(context);
+        shzsFra_sp = context.getSharedPreferences("SHZSFra_sp", Context.MODE_PRIVATE);
 
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("UserName", userName);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        requestQueue.add(new JsonObjectRequest(Request.Method.POST, "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/api/v2/get_weather", jsonObject, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject jsonObject) {
-                if (jsonObject.optString("RESULT").equals("S")) {
-                    Gson gson = new Gson();
-                    Get_weather get_weather = gson.fromJson(jsonObject.toString(), Get_weather.class);
-                    WCurrent.setText(get_weather.getWCurrent() + "°");
-                    String[] split = get_weather.getROWS_DETAIL().get(1).getTemperature().split("~");
-                    if (split.length == 2) {
-                        temperature.setText("今天:" + split[0] + "-" + split[1] + "℃");
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-
-            }
-        }));
+        /**
+         * 上部   气象信息查询http://localhost:8080/api/v2/get_weather
+         */
+        shangData();
 
         /**
          * 中部 计时器 查询“所有传感器”的当前值http://localhost:8080/api/v2/get_all_sense
@@ -137,6 +195,10 @@ public class SHZSFra extends Fragment {
                             Gson gson = new Gson();
                             Get_all_sense get_all_sense = gson.fromJson(jsonObject.toString(), Get_all_sense.class);
 
+
+                            /**
+                             * 处理中部数据
+                             */
                             int temp = get_all_sense.getLightIntensity();
                             ZhongBean zhongBean = zhongBeans.get(0);
                             if (temp < 1000) {
@@ -193,7 +255,17 @@ public class SHZSFra extends Fragment {
                                 zhongBean.setValue1("污染(" + temp + ")");
                                 zhongBean.setValue2("空气质量差，不适合户外活动");
                             }
+
+                            /**
+                             * 为下部提供数据
+                             */
+                            shzsFra_sp.edit().putString("get_$Pm25126", shzsFra_sp.getString("get_$Pm25126", "") + get_all_sense.get_$Pm25126() + "-").commit();
+                            shzsFra_sp.edit().putString("getTemperature", shzsFra_sp.getString("getTemperature", "") + get_all_sense.getTemperature() + "-").commit();
+                            shzsFra_sp.edit().putString("getHumidity", shzsFra_sp.getString("getHumidity", "") + get_all_sense.getHumidity() + "-").commit();
+                            shzsFra_sp.edit().putString("getCo2", shzsFra_sp.getString("getCo2", "") + get_all_sense.getCo2() + "-").commit();
+
                             zhongAda.notifyDataSetChanged();
+
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -204,6 +276,85 @@ public class SHZSFra extends Fragment {
                 }));
             }
         }, 0, 3000);
+
+        /**
+         * 下部
+         */
+        fragments = new ArrayList<>();
+        fragments.add(new SHZSFraXia1());
+        fragments.add(new SHZSFraXia2());
+        fragments.add(new SHZSFraXia3());
+        fragments.add(new SHZSFraXia4());
+        viewPager.setAdapter(new FragmentStatePagerAdapter(getFragmentManager()) {
+            @Override
+            public Fragment getItem(int i) {
+                return fragments != null ? fragments.get(i) : new Fragment();
+            }
+
+            @Override
+            public int getCount() {
+                return fragments.size();
+            }
+        });
+    }
+
+    private void shangData() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("UserName", userName);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        requestQueue.add(new JsonObjectRequest(Request.Method.POST, "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/api/v2/get_weather", jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                if (jsonObject.optString("RESULT").equals("S")) {
+                    Gson gson = new Gson();
+                    Get_weather get_weather = gson.fromJson(jsonObject.toString(), Get_weather.class);
+                    WCurrent.setText(get_weather.getWCurrent() + "°");
+                    String[] split = get_weather.getROWS_DETAIL().get(1).getTemperature().split("~");
+                    if (split.length == 2) {
+                        temperature.setText("今天:" + split[0] + "-" + split[1] + "℃");
+                    }
+
+                    List<Get_weather.ROWSDETAILBean> rows_detail = get_weather.getROWS_DETAIL();
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    ArrayList<String> strings = new ArrayList<>();
+                    ArrayList<Float[]> floats = new ArrayList<>();
+                    for (int i = 0; i < 6; i++) {
+                        Get_weather.ROWSDETAILBean rowsdetailBean = rows_detail.get(i);
+                        if (i == 0) {
+                            strings.add("昨天");
+                        } else if (i == 1) {
+                            strings.add("今天");
+                        } else if (i == 2) {
+                            strings.add("明天");
+                        } else {
+                            try {
+                                strings.add("周" + Util.getWeek(simpleDateFormat.parse(rowsdetailBean.getWData())));
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        String[] split1 = rowsdetailBean.getTemperature().split("~");
+                        if (split1.length == 2) {
+                            Float[] floats1 = {Float.valueOf(Integer.parseInt(split1[1])), Float.valueOf(Integer.parseInt(split1[0]))};
+                            floats.add(floats1);
+                        }
+                    }
+
+                    ShangLineManage shangLineManage = new ShangLineManage(lineChart);
+                    shangLineManage.show(strings, floats);
+
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        }));
     }
 
     private void initView(View view) {
@@ -309,6 +460,62 @@ public class SHZSFra extends Fragment {
                 this.value2 = (TextView) rootView.findViewById(R.id.value2);
             }
 
+        }
+    }
+
+    public class ShangLineManage {
+        private LineChart lineChart;
+        private final YAxis axisLeft;
+        private final YAxis axisRight;
+        private final XAxis xAxis;
+
+        public ShangLineManage(LineChart lineChart) {
+            this.lineChart = lineChart;
+            xAxis = lineChart.getXAxis();
+            axisLeft = lineChart.getAxisLeft();
+            axisRight = lineChart.getAxisRight();
+            initStyle();
+        }
+
+        private void initStyle() {
+            lineChart.setDescription("");
+            lineChart.getLegend().setEnabled(false);
+            xAxis.setTextSize(30);
+            xAxis.setTextColor(Color.parseColor("#4052B5"));
+            xAxis.setPosition(XAxis.XAxisPosition.TOP);
+            xAxis.setDrawAxisLine(false);
+            xAxis.setDrawGridLines(false);
+            axisLeft.setDrawLabels(false);
+            axisLeft.setDrawAxisLine(false);
+            axisLeft.setDrawGridLines(true);
+            axisRight.setEnabled(false);
+        }
+
+        public void show(ArrayList<String> x, ArrayList<Float[]> y) {
+            ArrayList<LineDataSet> lineDataSets = new ArrayList<>();
+            int[] colors = {Color.RED, Color.BLUE};
+            for (int i = 0; i < 2; i++) {
+                ArrayList<Entry> entries = new ArrayList<>();
+                for (int j = 0; j < y.size(); j++) {
+                    entries.add(new Entry(y.get(j)[i], j));
+                }
+                LineDataSet lineDataSet = new LineDataSet(entries, "");
+                lineDataSet.setColor(colors[i]);
+                lineDataSet.setDrawCircleHole(false);
+                lineDataSet.setCircleColor(colors[i]);
+                lineDataSets.add(lineDataSet);
+            }
+            LineData lineData = new LineData(x, lineDataSets);
+            lineChart.setData(lineData);
+            lineChart.invalidate();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (timer != null) {
+            timer.cancel();
         }
     }
 }
