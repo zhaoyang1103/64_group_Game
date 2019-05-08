@@ -3,6 +3,9 @@ package com.mad.trafficclient.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import static android.content.Context.MODE_PRIVATE;
 
 /**
@@ -69,5 +72,18 @@ public class Util {
         SharedPreferences userInfo = context.getSharedPreferences("userInfo", MODE_PRIVATE);
         userInfo.edit().putString("UserRole", UserRole).commit();
     }
+
+
+    public static String getWeek(Date date) {
+        String[] weeks = {"日", "一", "二", "三", "四", "五", "六"};
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(date);
+        int i = instance.get(Calendar.DAY_OF_WEEK) - 1;
+        if (i < 0) {
+            i = 0;
+        }
+        return weeks[i];
+    }
+
 
 }
