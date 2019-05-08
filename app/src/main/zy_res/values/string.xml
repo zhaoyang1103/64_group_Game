@@ -10,6 +10,44 @@
         <item>黄灯升序</item>
         <item>黄灯降序</item>
     </string-array>
+    <string name="item_1">第1题(车辆ETC)</string>
+    <string name="item_2">第2题(红绿灯管理)</string>
+    <string name="item_3">第3题(充值历史记录)</string>
+    <string name="item_4">第4题(车辆违章浏览功能)</string>
+    <string name="item_5">第5题(系统环境指标实时显示功能)</string>
+    <string name="item_6">第6题(传感器实时数据显示)</string>
+    <string name="item_7">第7题(阈值设置)</string>
+    <string name="item_8">第8题(公司交通单双号管制)</string>
+    <string name="item_9">第9题(车辆账户管理)</string>
+    <string name="item_10">第10题(公交查询)</string>
+    <string name="item_11">第11题(实现红绿灯管理)</string>
+    <string name="item_12">第12题(车辆违章查看功能)</string>
+    <string name="item_13">第13题(路况查询)</string>
+    <string name="item_14">第14题(生活助手)</string>
+    <string name="item_15">第15题(数据分析)</string>
+    <string name="item_16">第16题(个人中心)</string>
+    <string name="item_17">第17题(生活指数)</string>
+    <string name="item_18">第18题(我的消息)</string>
+    <string name="item_19">第19题(数据分析)</string>
+    <string name="item_20">第20题(个人中心)</string>
+    <string name="item_21">第21题(红绿灯管理)</string>
+    <string name="item_22">第22题(车辆ETC账户管理)</string>
+    <string name="item_23">第23题(车辆ETC账户告警)</string>
+    <string name="item_24">第24题(生活助手)</string>
+    <string name="item_25">第25题(路况查询)</string>
+    <string name="item_26">第26题(数据分析)</string>
+    <string name="item_27">第27题(生活助手)</string>
+    <string name="item_28">第28题(公交查询)</string>
+    <string name="item_29">第29题(环境指标)</string>
+    <string name="item_30">第30题(车辆违章视频)</string>
+    <string name="item_31">第31题(意见反馈)</string>
+    <string name="item_32">第32题(城市地铁查看)</string>
+    <string name="item_33">第33题(车辆ETC)</string>
+    <string name="item_34">第34题(车辆ETC)</string>
+    <string name="item_35">第35题(车辆ETC)</string>
+    <string name="item_36">第36题(车辆ETC)</string>
+
+
     <string-array name="message_sort">
         <item>全部</item>
         <item>温度</item>

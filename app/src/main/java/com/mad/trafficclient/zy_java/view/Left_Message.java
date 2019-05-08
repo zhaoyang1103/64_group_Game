@@ -90,7 +90,7 @@ public class Left_Message extends Fragment {
                 GetAllSense();
             }
         }, 0, 3000);
-        spinner_message.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()     {
+        spinner_message.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String name = spinner_message.getSelectedItem().toString();
@@ -119,12 +119,11 @@ public class Left_Message extends Fragment {
                 }
 
             }
-            adapter = new LeftMessageAdapter(list);
+            LeftMessageAdapter adapter = new LeftMessageAdapter(list);
             list_message.setAdapter(adapter);
             adapter.notifyDataSetChanged();
-        }
-        else {
-            adapter = new LeftMessageAdapter(list_yuizhi);
+        } else {
+            LeftMessageAdapter adapter = new LeftMessageAdapter(list_yuizhi);
             list_message.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }

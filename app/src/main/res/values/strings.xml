@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    
+
     <string name="app_name">智能交通</string>
     <string name="app_title">智能交通</string>
     <string name="action_settings">设置</string>
@@ -16,7 +16,7 @@
     <string name="register">注册</string>
 
     <string name="error_ip">服务器地址不能为空！</string>
-    
+
     <string name="res_left_wodezhanghu">功能编码1</string>
     <string name="res_left_zhanghuguanli">功能编码2</string>
     <string name="res_left_honglvdengguanli">功能编码3</string>
@@ -25,5 +25,8 @@
     <string name="info_result">通讯数据返回结果！</string>
     <string name="info_app">欢迎使用智能交通APP！
 "本系统的主要功能包括我的账户、账单管理、红绿灯管理、违章视频、公交查询、实时环境和车位查询等。</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

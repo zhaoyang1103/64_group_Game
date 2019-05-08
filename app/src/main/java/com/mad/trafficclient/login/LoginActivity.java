@@ -29,6 +29,8 @@ import com.mad.trafficclient.R;
 import com.mad.trafficclient.util.LoadingDialog;
 import com.mad.trafficclient.util.UrlBean;
 import com.mad.trafficclient.util.Util;
+import com.mad.trafficclient.zy_java.data.CarData;
+import com.mad.trafficclient.zy_java.server.MyService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,6 +59,7 @@ public class LoginActivity extends Activity {
         initView();
         initData();
         initLiserter();
+//        new CarData(this);
     }
 
     private void initData() {
