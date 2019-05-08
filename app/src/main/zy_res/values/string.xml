@@ -10,7 +10,7 @@
         <item>黄灯升序</item>
         <item>黄灯降序</item>
     </string-array>
-    <string name="item_1">第1题(车辆ETC)</string>
+    <string name="item_1" >第1题(车辆ETC)</string>
     <string name="item_2">第2题(红绿灯管理)</string>
     <string name="item_3">第3题(充值历史记录)</string>
     <string name="item_4">第4题(车辆违章浏览功能)</string>
