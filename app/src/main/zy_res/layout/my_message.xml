@@ -4,11 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/fragment_test"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"></FrameLayout>
+        android:layout_weight="1">
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,6 +20,7 @@
             android:id="@+id/message_query"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_weight="1"
             android:text="消息信息"
             android:textSize="30dp" />
@@ -26,6 +28,7 @@
         <TextView
             android:id="@+id/message_fenxi"
             android:layout_width="wrap_content"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="消息分析"

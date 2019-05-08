@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="50dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -14,11 +15,115 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="请选择消息类型"
+            android:layout_marginLeft="50dp"
             android:textStyle="normal" />
 
         <Spinner
             android:id="@+id/spinner_message"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"></Spinner>
+            android:layout_height="match_parent"
+            android:entries="@array/message_sort"></Spinner>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="30dp"
+            android:background="#000"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="60dp"
+                android:background="#000"></View>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="序号"
+                android:textSize="30dp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="60dp"
+                android:background="#000"></View>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="报警类型"
+                android:textSize="30dp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="60dp"
+                android:background="#000"></View>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="阈值"
+                android:textSize="30dp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="60dp"
+                android:background="#000"></View>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="当前值"
+                android:textSize="30dp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="60dp"
+                android:background="#000"></View>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#000"></View>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tx_message_show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/texystyle"
+                android:textSize="50dp"
+                android:text="当前还未有报警信息"
+                android:layout_centerInParent="true"/>
+
+            <ListView
+                android:id="@+id/list_message"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></ListView>
+
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
