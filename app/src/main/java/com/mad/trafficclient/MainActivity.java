@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mad.trafficclient.fragment.FragmentHome;
 import com.mad.trafficclient.st_java.fragment.GRZXFra;
@@ -50,7 +51,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements Acc_Main.To{
     private SlidingPaneLayout slidepanel;
 
     private Fragment fragment;
@@ -377,7 +378,7 @@ public class MainActivity extends FragmentActivity {
                     default:
                         break;
                 }
-                if (arg2 == 31) {
+                if (arg2 == 31||arg2==8||arg2==12) {
                     top_title.setVisibility(View.GONE);
                 } else {
                     top_title.setVisibility(View.VISIBLE);
@@ -447,5 +448,19 @@ public class MainActivity extends FragmentActivity {
 
     private void initView() {
         top_title = (LinearLayout) findViewById(R.id.top_title);
+    }
+
+    @Override
+    public void Caidan() {
+        if (slidepanel.isOpen()) {
+            slidepanel.closePane();
+        } else {
+            slidepanel.openPane();
+        }
+    }
+
+    @Override
+    public void Jilu() {
+        Toast.makeText(this, "跳转到充值记录", Toast.LENGTH_SHORT).show();
     }
 }
