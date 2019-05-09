@@ -89,10 +89,9 @@ public class CarData implements CarData_abs {
     public void getData(String data) {
         process = process + 20;
         progressDialog.setProgress(process);
-
         switch (data) {
             case "zy":
-                if (flag == 4) {
+                if (progressDialog.getProgress() == 80) {
                     dealData();
                     getTu1();
                     getTu2();
@@ -101,7 +100,6 @@ public class CarData implements CarData_abs {
                     getTu5();
                     getTu6();
                     getTu7();
-
                     process += 20;
                     progressDialog.setProgress(process);
                     progressDialog.dismiss();
@@ -144,9 +142,6 @@ public class CarData implements CarData_abs {
                 Gson gson = new Gson();
                 AllCarBean allCarBean = gson.fromJson(jsonObject.toString(), AllCarBean.class);
                 allcar_list = allCarBean.getROWS_DETAIL();
-                flag++;
-
-
                 EventBus.getDefault().post("zy");
             }
         }, new Response.ErrorListener() {
@@ -167,8 +162,6 @@ public class CarData implements CarData_abs {
                 Gson gson = new Gson();
                 AllPeccancyBean allCarBean = gson.fromJson(jsonObject.toString(), AllPeccancyBean.class);
                 allpeccancy_list = allCarBean.getROWS_DETAIL();
-                flag++;
-
                 EventBus.getDefault().post("zy");
 
             }
@@ -189,7 +182,6 @@ public class CarData implements CarData_abs {
                 Gson gson = new Gson();
                 AllPersonBean allCarBean = gson.fromJson(jsonObject.toString(), AllPersonBean.class);
                 allperson_list = allCarBean.getROWS_DETAIL();
-                flag++;
                 EventBus.getDefault().post("zy");
             }
         }, new Response.ErrorListener() {
@@ -209,7 +201,6 @@ public class CarData implements CarData_abs {
                 Gson gson = new Gson();
                 AllTypeBean allCarBean = gson.fromJson(jsonObject.toString(), AllTypeBean.class);
                 alltype_list = allCarBean.getROWS_DETAIL();
-                flag++;
                 EventBus.getDefault().post("zy");
             }
         }, new Response.ErrorListener() {
