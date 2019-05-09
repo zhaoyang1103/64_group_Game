@@ -1,6 +1,9 @@
 package com.mad.trafficclient.zy_java.data;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -11,6 +14,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.mad.trafficclient.MainActivity;
 import com.mad.trafficclient.util.Util;
 import com.mad.trafficclient.zy_java.bean.AllCarBean;
 import com.mad.trafficclient.zy_java.bean.AllPeccancyBean;
@@ -49,8 +53,11 @@ public class CarData implements CarData_abs {
     private String api_4 = "";
     private final RequestQueue requestQueue;
     private final JSONObject object;
+    private ProgressDialog progressDialog;
+    private int process = 0;
 
-    public CarData(Context context) {
+    public CarData(final Context context) {
+//        alertDialog
         this.context = context;
         EventBus.getDefault().register(this);
         requestQueue = Volley.newRequestQueue(context);
@@ -60,6 +67,13 @@ public class CarData implements CarData_abs {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Looper.prepare();
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setMax(100);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         api_1 = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_car_info";
         api_2 = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_all_car_peccancy";
         api_3 = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_all_user_info";
@@ -68,10 +82,14 @@ public class CarData implements CarData_abs {
         getB2();
         getB3();
         getB4();
+        Looper.loop();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getData(String data) {
+        process = process + 20;
+        progressDialog.setProgress(process);
+
         switch (data) {
             case "zy":
                 if (flag == 4) {
@@ -83,7 +101,10 @@ public class CarData implements CarData_abs {
                     getTu5();
                     getTu6();
                     getTu7();
-                    flag++;
+
+                    process += 20;
+                    progressDialog.setProgress(process);
+                    progressDialog.dismiss();
 //                    getB3();
                 }
                 break;
@@ -123,8 +144,9 @@ public class CarData implements CarData_abs {
                 Gson gson = new Gson();
                 AllCarBean allCarBean = gson.fromJson(jsonObject.toString(), AllCarBean.class);
                 allcar_list = allCarBean.getROWS_DETAIL();
-
                 flag++;
+
+
                 EventBus.getDefault().post("zy");
             }
         }, new Response.ErrorListener() {
@@ -146,6 +168,7 @@ public class CarData implements CarData_abs {
                 AllPeccancyBean allCarBean = gson.fromJson(jsonObject.toString(), AllPeccancyBean.class);
                 allpeccancy_list = allCarBean.getROWS_DETAIL();
                 flag++;
+
                 EventBus.getDefault().post("zy");
 
             }
@@ -186,7 +209,6 @@ public class CarData implements CarData_abs {
                 Gson gson = new Gson();
                 AllTypeBean allCarBean = gson.fromJson(jsonObject.toString(), AllTypeBean.class);
                 alltype_list = allCarBean.getROWS_DETAIL();
-
                 flag++;
                 EventBus.getDefault().post("zy");
             }
@@ -205,8 +227,7 @@ public class CarData implements CarData_abs {
             for (int j = 0; j < allpeccancy_list.size(); j++) {
                 if (allcar_list.get(i).getCarnumber().equals(allpeccancy_list.get(j).getCarnumber())) {
                     int count = allcar_list.get(i).getCount();
-                    if(count>=1)
-                    {
+                    if (count >= 1) {
                         continue;
                     }
 
@@ -301,9 +322,9 @@ public class CarData implements CarData_abs {
                 floats[2]++;
             }
         }
-        y.add(floats[0]*100/single_peccancy.size());
-        y.add(floats[1]*100/single_peccancy.size());
-        y.add(floats[2]*100/single_peccancy.size());
+        y.add(floats[0] * 100 / single_peccancy.size());
+        y.add(floats[1] * 100 / single_peccancy.size());
+        y.add(floats[2] * 100 / single_peccancy.size());
         map.put("x3", x);
         map.put("y3", y);
 
