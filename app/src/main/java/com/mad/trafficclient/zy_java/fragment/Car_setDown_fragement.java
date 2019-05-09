@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.mad.trafficclient.R;
 import com.mad.trafficclient.util.Util;
 import com.mad.trafficclient.zy_java.manage.Chart_1;
+import com.mad.trafficclient.zy_java.view.Car_balacne_1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +61,7 @@ public class Car_setDown_fragement extends Fragment implements View.OnClickListe
         my_talance.setOnClickListener(this);
         my_record.setOnClickListener(this);
         list = new ArrayList<>();
-        list.add(new Chart_1());
+        list.add(new Car_balacne_1());
         list.add(new Chart_1());
         list.add(new Chart_1());
         car_viewpager.setAdapter(new FragmentStatePagerAdapter(getFragmentManager()) {
@@ -84,7 +85,6 @@ public class Car_setDown_fragement extends Fragment implements View.OnClickListe
                 car_viewpager.setCurrentItem(i);
             } else {
                 tes[i].setTextColor(Color.GRAY);
-
             }
         }
 
@@ -105,4 +105,7 @@ public class Car_setDown_fragement extends Fragment implements View.OnClickListe
                 break;
         }
     }
+
+
+
 }
