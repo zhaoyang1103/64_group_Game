@@ -70,6 +70,7 @@ public class CarData implements CarData_abs {
         Looper.prepare();
         progressDialog = new ProgressDialog(context);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setMessage("数据正在读取 请稍等");
         progressDialog.setMax(100);
         progressDialog.setCancelable(false);
         progressDialog.show();
