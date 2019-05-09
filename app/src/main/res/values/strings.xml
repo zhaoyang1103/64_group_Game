@@ -25,8 +25,4 @@
     <string name="info_result">通讯数据返回结果！</string>
     <string name="info_app">欢迎使用智能交通APP！
 "本系统的主要功能包括我的账户、账单管理、红绿灯管理、违章视频、公交查询、实时环境和车位查询等。</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 </resources>
