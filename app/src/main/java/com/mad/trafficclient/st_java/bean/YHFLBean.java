@@ -17,6 +17,7 @@ public class YHFLBean {
 
     private boolean btn_shoucang_state = false;
     private boolean btn_shanchu_state = false;
+    private boolean iv_back_st = false;
 
     public YHFLBean(int icon, boolean icon_state, String username, String pname, String ptel, String time, String tv_guanliyuan, String tv_shoucang, String btn_shoucang, String btn_shanchu, boolean btn_shoucang_state, boolean btn_shanchu_state) {
         this.icon = icon;
@@ -134,4 +135,5 @@ public class YHFLBean {
     public void setBtn_shanchu_state(boolean btn_shanchu_state) {
         this.btn_shanchu_state = btn_shanchu_state;
     }
+
 }

@@ -24,6 +24,7 @@ public class Fragment_1 extends Fragment
 				.inflate(R.layout.fragment_layout01, container, false);
 		TextView textview = (TextView) view.findViewById(R.id.textview);
 		textview.setText("this is fragment 1");
+
 		return view;
 	}
 

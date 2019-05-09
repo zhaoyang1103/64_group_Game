@@ -27,7 +27,6 @@ public class YHGLFra extends Fragment {
     private ArrayList<YHFLBean> beans;
 
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -169,6 +168,7 @@ public class YHGLFra extends Fragment {
             public RelativeLayout relativeLayout;
             public TextView btn_shoucang;
             public TextView btn_shanchu;
+            public ImageView iv_back;
 
             public ViewHolder(View rootView) {
                 this.rootView = rootView;
@@ -182,9 +182,9 @@ public class YHGLFra extends Fragment {
                 this.relativeLayout = (RelativeLayout) rootView.findViewById(R.id.relativeLayout);
                 this.btn_shoucang = (TextView) rootView.findViewById(R.id.btn_shoucang);
                 this.btn_shanchu = (TextView) rootView.findViewById(R.id.btn_shanchu);
+                this.iv_back = (ImageView) rootView.findViewById(R.id.iv_back);
             }
 
         }
-
     }
 }
