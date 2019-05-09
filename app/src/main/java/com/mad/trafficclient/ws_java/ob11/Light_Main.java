@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -270,6 +271,7 @@ public class Light_Main extends Fragment implements View.OnClickListener {
                     final EditText ob11_setting_green_time = (EditText) settingkuang.getWindow().findViewById(R.id.ob11_setting_green_time);
                     final EditText ob11_setting_yellow_time = (EditText) settingkuang.getWindow().findViewById(R.id.ob11_setting_yellow_time);
                     final EditText ob11_setting_red_time = (EditText) settingkuang.getWindow().findViewById(R.id.ob11_setting_red_time);
+
                     ob11_setting_quxiao.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -279,11 +281,16 @@ public class Light_Main extends Fragment implements View.OnClickListener {
                     ob11_setting_queding.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            ChargeLight(lightlist,
-                                    Integer.parseInt(ob11_setting_red_time.getText().toString().trim()),
-                                    Integer.parseInt(ob11_setting_green_time.getText().toString().trim()),
-                                    Integer.parseInt(ob11_setting_yellow_time.getText().toString().trim()));
-                            settingkuang.dismiss();
+                            if(TextUtils.isEmpty(ob11_setting_green_time.getText().toString().trim()) || TextUtils.isEmpty(ob11_setting_yellow_time.getText().toString().trim()) || TextUtils.isEmpty(ob11_setting_red_time.getText().toString().trim())){
+                                Toast.makeText(getContext(), "灯值不能为空", Toast.LENGTH_SHORT).show();
+                                return;
+                            } else {
+                                ChargeLight(lightlist,
+                                        Integer.parseInt(ob11_setting_red_time.getText().toString().trim()),
+                                        Integer.parseInt(ob11_setting_green_time.getText().toString().trim()),
+                                        Integer.parseInt(ob11_setting_yellow_time.getText().toString().trim()));
+                                settingkuang.dismiss();
+                            }
                         }
                     });
                 } else {
