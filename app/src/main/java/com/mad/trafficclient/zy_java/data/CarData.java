@@ -93,6 +93,9 @@ public class CarData implements CarData_abs {
         switch (data) {
             case "zy":
                 if (progressDialog.getProgress() == 80) {
+                    process += 20;
+                    progressDialog.setProgress(process);
+                    progressDialog.dismiss();
                     dealData();
                     getTu1();
                     getTu2();
@@ -101,9 +104,7 @@ public class CarData implements CarData_abs {
                     getTu5();
                     getTu6();
                     getTu7();
-                    process += 20;
-                    progressDialog.setProgress(process);
-                    progressDialog.dismiss();
+
 //                    getB3();
                 }
                 break;

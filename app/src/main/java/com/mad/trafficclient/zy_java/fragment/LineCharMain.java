@@ -7,8 +7,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +50,6 @@ public class LineCharMain extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             postion_data = getArguments().getInt("position");
-
         }
     }
 
@@ -77,24 +79,26 @@ public class LineCharMain extends Fragment {
         glideview = (GlideView) view.findViewById(R.id.glideview);
         list = new ArrayList<>();
         context = getContext();
+        Fragment intance = LineShowFrag.getIntance(0);
+        Fragment intance1 = LineShowFrag.getIntance(1);
+        Fragment intance2 = LineShowFrag.getIntance(1);
+        Fragment intance3 = LineShowFrag.getIntance(1);
+        Fragment intance4 = LineShowFrag.getIntance(1);
+        Fragment intance5 = LineShowFrag.getIntance(1);
+        list.add(intance);
+        list.add(intance1);
+        list.add(intance2);
+        list.add(intance3);
+        list.add(intance4);
+        list.add(intance5);
+        Adapter adapter = new Adapter(getFragmentManager());
+        viewpager.setAdapter(adapter);
         addData();
 
-
-        viewpager.setAdapter(new FragmentStatePagerAdapter(getFragmentManager()) {
-            @Override
-            public Fragment getItem(int i) {
-                return list.get(i);
-            }
-
-            @Override
-            public int getCount() {
-                return list.size();
-            }
-        });
         viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
-
+                Log.i("滑动", "onPageScrolled: " + i);
             }
 
             @Override
@@ -110,24 +114,33 @@ public class LineCharMain extends Fragment {
             }
         });
 
-
     }
 
     private void addData() {
-        list.add(LineShowFrag.getIntance(0));
-        list.add(LineShowFrag.getIntance(1));
-        list.add(LineShowFrag.getIntance(2));
-        list.add(LineShowFrag.getIntance(3));
-        list.add(LineShowFrag.getIntance(4));
-        list.add(LineShowFrag.getIntance(5));
         if (list.size() > 0) {
             glideview.setCount(list.size());
             viewpager.setCurrentItem(postion_data);
             glideview.setIndex(context, postion_data);
             getshow(postion_data);
+
         }
     }
 
+    class Adapter extends FragmentStatePagerAdapter {
+        public Adapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int i) {
+            return list.get(i);
+        }
+
+        @Override
+        public int getCount() {
+            return list.size();
+        }
+    }
 
     private void getshow(int postion_data) {
         switch (postion_data) {
