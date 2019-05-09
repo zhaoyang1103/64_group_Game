@@ -34,13 +34,20 @@ public class Zxing_fragment_2 extends Fragment implements View.OnClickListener {
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+            if (flag) {
+                bitmap = Zxing_Util.showQcode(content, 200, 200);
+                image_zxing_small.setImageBitmap(bitmap);
+                image_zxing_big.setImageBitmap(bitmap);
+            } else {
+                bitmap = Zxing_Util.showQcode(content+".", 200, 200);
+                image_zxing_small.setImageBitmap(bitmap);
+                image_zxing_big.setImageBitmap(bitmap);
+            }
 
-            bitmap = Zxing_Util.showQcode(content, 200, 200);
-            image_zxing_small.setImageBitmap(bitmap);
-            image_zxing_big.setImageBitmap(bitmap);
         }
     };
     private String content;
+    private boolean flag = false;
 
     @Override
 
@@ -74,17 +81,18 @@ public class Zxing_fragment_2 extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
-        TextView textView = new TextView(getContext());
+
 
         image_zxing_big = (ImageView) view.findViewById(R.id.image_zxing_big);
         tx_zxing_show = (TextView) view.findViewById(R.id.tx_zxing_show);
         image_zxing_small = (ImageView) view.findViewById(R.id.image_zxing_small);
         image_zxing_small.setOnClickListener(this);
         image_zxing_big.setOnClickListener(this);
-        content = "车牌编号" + carid + ",付款金额" + monry;
+        content = "车牌编号=" + carid + ",付款金额=" + monry+"元";
         bitmap = Zxing_Util.showQcode(content, 200, 200);
         image_zxing_small.setImageBitmap(bitmap);
         image_zxing_big.setImageBitmap(bitmap);
+        image_zxing_big.setVisibility(View.GONE);
         image_zxing_small.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -96,6 +104,13 @@ public class Zxing_fragment_2 extends Fragment implements View.OnClickListener {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+                Message message = new Message();
+
+                if (flag) {
+                    flag = false;
+                } else {
+                    flag = true;
+                }
                 handler.sendEmptyMessage(0);
 
             }

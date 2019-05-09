@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.mad.trafficclient.R;
 import com.mad.trafficclient.zy_java.view.Zxing_fragment_2;
 
+import java.util.Arrays;
+
 
 public class Zxing_fragment extends Fragment implements View.OnClickListener {
 
@@ -41,7 +43,6 @@ public class Zxing_fragment extends Fragment implements View.OnClickListener {
         edit_monmey = (EditText) view.findViewById(R.id.edit_monmey);
         edit_time = (EditText) view.findViewById(R.id.edit_time);
         bt_live_zxing = (Button) view.findViewById(R.id.bt_live_zxing);
-
         bt_live_zxing.setOnClickListener(this);
     }
 
