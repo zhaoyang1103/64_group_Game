@@ -42,10 +42,10 @@ public class Zy_charmain extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater
                 .inflate(R.layout.chartmain, container, false);
-        if (CarData.getFlag() < 5) {
-            getFragmentManager().popBackStack();
-            Toast.makeText(context, "数据正在读取", Toast.LENGTH_SHORT).show();
-        }
+//        if (CarData.getFlag() < 4) {
+//            getFragmentManager().popBackStack();
+//            Toast.makeText(context, "数据正在读取", Toast.LENGTH_SHORT).show();
+//        }
 
         initView(view);
         return view;
