@@ -122,7 +122,6 @@ public class LineCharMain extends Fragment {
             viewpager.setCurrentItem(postion_data);
             glideview.setIndex(context, postion_data);
             getshow(postion_data);
-
         }
     }
 
