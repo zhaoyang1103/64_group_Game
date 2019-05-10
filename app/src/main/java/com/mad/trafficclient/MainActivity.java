@@ -51,7 +51,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class MainActivity extends FragmentActivity implements Acc_Main.To{
+public class MainActivity extends FragmentActivity implements Acc_Main.To {
     private SlidingPaneLayout slidepanel;
 
     private Fragment fragment;
@@ -378,12 +378,23 @@ public class MainActivity extends FragmentActivity implements Acc_Main.To{
                     default:
                         break;
                 }
-                if (arg2 == 31||arg2==8||arg2==12) {
-                    top_title.setVisibility(View.GONE);
-                } else {
-                    top_title.setVisibility(View.VISIBLE);
+
+                int[] ints = new int[]{8, 12, 31};
+
+                for (int i = 0; i < ints.length; i++) {
+                    if (arg2 == ints[i]) {
+                        top_title.setVisibility(View.GONE);
+
+                    } else {
+                        top_title.setVisibility(View.VISIBLE);
+                    }
 
                 }
+//                if (arg2 == 31 || arg2 == 8 || arg2 == 12) {
+//                    top_title.setVisibility(View.GONE);
+//                } else {
+//                    top_title.setVisibility(View.VISIBLE);
+//                }
 
             }
         });
