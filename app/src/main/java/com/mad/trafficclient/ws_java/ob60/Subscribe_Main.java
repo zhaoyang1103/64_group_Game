@@ -15,8 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mad.trafficclient.R;
+import com.mad.trafficclient.zy_java.bean.SubscibeBean;
 
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -27,10 +31,11 @@ public class Subscribe_Main extends Fragment {
     private GridView ob60_toSubscribe;
     private GridView ob60_toAdd;
 
-    private List<String> subscribeList;
-    private List<String> addList;
+    private List<SubscibeBean> subscribeList;
+    private List<SubscibeBean> addList;
     private SubscribeAdapter subscribeAdapter;
     private AddAdapter addAdapter;
+//    private List<SubscibeBean> list;
 
     @Nullable
     @Override
@@ -40,15 +45,16 @@ public class Subscribe_Main extends Fragment {
         context = getContext();
         subscribeList = new ArrayList<>();
         addList = new ArrayList<>();
-        addList.add("推荐");
-        addList.add("安全驾驶");
-        addList.add("交通分类");
-        addList.add("科技类");
-        addList.add("路况类");
-        addList.add("汽车类");
-        addList.add("二手车类");
-        addList.add("改装车");
-        addList.add("违章");
+//        list = new ArrayList<>();
+        addList.add(new SubscibeBean(0, "推荐"));
+        addList.add(new SubscibeBean(1, "安全驾驶"));
+        addList.add(new SubscibeBean(2, "交通分类"));
+        addList.add(new SubscibeBean(3, "科技类"));
+        addList.add(new SubscibeBean(4, "路况类"));
+        addList.add(new SubscibeBean(5, "汽车类"));
+        addList.add(new SubscibeBean(6, "二手车类"));
+        addList.add(new SubscibeBean(7, "改装车"));
+        addList.add(new SubscibeBean(8, "违章"));
         subscribeAdapter = new SubscribeAdapter();
         addAdapter = new AddAdapter();
         ob60_toSubscribe.setAdapter(subscribeAdapter);
@@ -85,11 +91,15 @@ public class Subscribe_Main extends Fragment {
         public View getView(final int position, View convertView, ViewGroup parent) {
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.ob60_subscribe_item, parent, false);
             ViewHolder viewHolder = new ViewHolder(convertView);
-            viewHolder.ob60_subscribe_text.setText(subscribeList.get(position));
+            viewHolder.ob60_subscribe_text.setText(subscribeList.get(position).getName());
             viewHolder.ob60_grid_remove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    SubscibeBean subscibeBean = subscribeList.get(position);
+//                    addList.set(subscibeBean.getPosition(), subscibeBean);
                     addList.add(subscribeList.get(position));
+
+
                     subscribeList.remove(position);
                     subscribeAdapter.notifyDataSetChanged();
                     addAdapter.notifyDataSetChanged();
@@ -132,13 +142,23 @@ public class Subscribe_Main extends Fragment {
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.ob60_add_item, parent, false);
-            ViewHolder viewHolder = new ViewHolder(convertView);
-            viewHolder.ob60_add_text.setText(addList.get(position));
+            final ViewHolder viewHolder = new ViewHolder(convertView);
+            Collections.sort(addList, new Comparator<SubscibeBean>() {
+                @Override
+                public int compare(SubscibeBean o1, SubscibeBean o2) {
+                    return o1.getPosition()-o2.getPosition();
+                }
+            });
+            viewHolder.ob60_add_text.setText(addList.get(position).getName());
             viewHolder.ob60_grid_add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     subscribeList.add(addList.get(position));
                     addList.remove(position);
+//                    addList.set(position, new SubscibeBean(position, ""));
+//                    viewHolder.ob60_grid_add.setVisibility(View.GONE);
+
+
                     addAdapter.notifyDataSetChanged();
                     subscribeAdapter.notifyDataSetChanged();
                 }
