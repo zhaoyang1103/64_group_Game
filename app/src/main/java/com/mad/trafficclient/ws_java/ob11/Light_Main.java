@@ -281,7 +281,7 @@ public class Light_Main extends Fragment implements View.OnClickListener {
                     ob11_setting_queding.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(TextUtils.isEmpty(ob11_setting_green_time.getText().toString().trim()) || TextUtils.isEmpty(ob11_setting_yellow_time.getText().toString().trim()) || TextUtils.isEmpty(ob11_setting_red_time.getText().toString().trim())){
+                            if (TextUtils.isEmpty(ob11_setting_green_time.getText().toString().trim()) || TextUtils.isEmpty(ob11_setting_yellow_time.getText().toString().trim()) || TextUtils.isEmpty(ob11_setting_red_time.getText().toString().trim())) {
                                 Toast.makeText(getContext(), "灯值不能为空", Toast.LENGTH_SHORT).show();
                                 return;
                             } else {
@@ -362,13 +362,19 @@ public class Light_Main extends Fragment implements View.OnClickListener {
                     ob11_setting_queding.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            List<Integer> lightid = new ArrayList<>();
-                            lightid.add(list.get(position).getId());
-                            ChargeLight(lightid,
-                                    Integer.parseInt(ob11_setting_red_time.getText().toString().trim()),
-                                    Integer.parseInt(ob11_setting_green_time.getText().toString().trim()),
-                                    Integer.parseInt(ob11_setting_yellow_time.getText().toString().trim()));
-                            settingkuang.dismiss();
+                            if (TextUtils.isEmpty(ob11_setting_green_time.getText()) || TextUtils.isEmpty(ob11_setting_yellow_time.getText()) || TextUtils.isEmpty(ob11_setting_red_time.getText())) {
+                                Toast.makeText(getContext(), "不许有空", Toast.LENGTH_SHORT).show();
+                                return;
+                            } else {
+                                List<Integer> lightid = new ArrayList<>();
+                                lightid.add(list.get(position).getId());
+                                ChargeLight(lightid,
+                                        Integer.parseInt(ob11_setting_red_time.getText().toString().trim()),
+                                        Integer.parseInt(ob11_setting_green_time.getText().toString().trim()),
+                                        Integer.parseInt(ob11_setting_yellow_time.getText().toString().trim()));
+                                settingkuang.dismiss();
+                            }
+
                         }
                     });
                 }
