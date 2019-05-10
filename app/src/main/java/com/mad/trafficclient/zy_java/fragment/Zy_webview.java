@@ -15,7 +15,7 @@ import android.widget.Button;
 import com.mad.trafficclient.R;
 
 
-public class Zy_webview extends Fragment implements View.OnClickListener {
+public class Zy_webview extends Fragment  {
 
     private WebView zy_webview;
     private Button bt_start;
@@ -35,17 +35,8 @@ public class Zy_webview extends Fragment implements View.OnClickListener {
 //        zy_webview.loadDataWithBaseURL(null, null, "zy_web.html", "utf-8", null);
         String url = "file:///android_asset/zy_web.html";
         zy_webview.loadUrl(url);
-        bt_start = (Button) view.findViewById(R.id.bt_start);
-        bt_start.setOnClickListener(this);
+
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.bt_start:
-                Intent intent=new Intent(getContext(),com.amap.api.maps.offlinemap.OfflineMapActivity.class);
-                startActivity(intent);
-                break;
-        }
-    }
+
 }

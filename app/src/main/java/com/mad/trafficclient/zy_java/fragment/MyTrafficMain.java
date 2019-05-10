@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,7 +17,7 @@ import com.mad.trafficclient.zy_java.view.Left_Message;
 import com.mad.trafficclient.zy_java.view.Right_message;
 
 
-public class Message_Main extends Fragment implements View.OnClickListener {
+public class MyTrafficMain extends Fragment implements View.OnClickListener {
 
     private RelativeLayout fragment_test;
     private TextView message_query;
