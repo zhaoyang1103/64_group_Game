@@ -72,7 +72,7 @@ public class CZJLFra extends Fragment {
         Collections.sort(jiluBeans, new Comparator<JiluBean>() {
             @Override
             public int compare(JiluBean o1, JiluBean o2) {
-                return o1.getId() - o2.getId();
+                return o2.getId() - o1.getId();
             }
         });
         jlAda = new JLAda();

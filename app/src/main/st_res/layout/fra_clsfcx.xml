@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ll_back_clsfcx"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="3dp"
+        android:background="#ABCFD8"
+        android:gravity="center"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="车辆收费查询"
+            android:textColor="#000"
+            android:textSize="40dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#355A8A" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:background="@drawable/ll_back_clsfcx"></Spinner>
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:orientation="vertical">
+
+            <Spinner
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ll_back_clsfcx"></Spinner>
+
+            <Spinner
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ll_back_clsfcx"></Spinner>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_weight="1"
+        android:background="@drawable/ll_back_clsfcx"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="3dp"
+            android:background="#ABCFD8"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="查询结果"
+                android:textColor="#355A8A"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#355A8A" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="IC卡号"
+                android:textColor="#355A8A"
+                android:textSize="30dp" />
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:background="#355A8A" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="车牌号码"
+                android:textColor="#355A8A"
+                android:textSize="30dp" />
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:background="#355A8A" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="人员姓名"
+                android:textColor="#355A8A"
+                android:textSize="30dp" />
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:background="#355A8A" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="入场时间"
+                android:textColor="#355A8A"
+                android:textSize="30dp" />
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:background="#355A8A" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="出场时间"
+                android:textColor="#355A8A"
+                android:textSize="30dp" />
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:background="#355A8A" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="收费金额"
+                android:textColor="#355A8A"
+                android:textSize="30dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#355A8A" />
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+        <Button
+            android:id="@+id/bt_query"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="100dp"
+            android:background="@drawable/btn_back_clsfcx"
+            android:text="查询"
+            android:textColor="#355A8A"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/bt_exit"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:background="@drawable/btn_back_clsfcx"
+            android:text="退出"
+            android:textColor="#355A8A"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

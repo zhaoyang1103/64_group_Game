@@ -17,6 +17,7 @@ import com.mad.trafficclient.R;
 import com.mad.trafficclient.st_java.fragment.grzxfra.CZJLFra;
 import com.mad.trafficclient.st_java.fragment.grzxfra.GRXXFra;
 import com.mad.trafficclient.st_java.fragment.grzxfra.YZSZFra;
+import com.mad.trafficclient.ws_java.ob23.BalanceYuZhiSetting;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,12 @@ public class GRZXFra extends Fragment {
     private TextView title_3;
     private ViewPager viewPager;
     private ArrayList<Fragment> fragments;
+
+    public static GRZXFra newInstance(Bundle args) {
+        GRZXFra fragment = new GRZXFra();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Nullable
     @Override
@@ -90,7 +97,7 @@ public class GRZXFra extends Fragment {
         fragments = new ArrayList<>();
         fragments.add(new GRXXFra());
         fragments.add(new CZJLFra());
-        fragments.add(new YZSZFra());
+        fragments.add(new BalanceYuZhiSetting());
         viewPager.setAdapter(new FragmentStatePagerAdapter(getFragmentManager()) {
             @Override
             public Fragment getItem(int i) {
@@ -103,7 +110,11 @@ public class GRZXFra extends Fragment {
             }
         });
         title_1.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
-
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            if (arguments.getString("MESSAGE").equals("充值记录"))
+                viewPager.setCurrentItem(1);
+        }
     }
 
     private void initView(View view) {

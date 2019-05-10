@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <com.amap.api.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.amap.api.maps.MapView>
 
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.github.mikephil.charting.charts.LineChart>
 </LinearLayout>

@@ -32,6 +32,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.mad.trafficclient.R;
+import com.mad.trafficclient.st_java.fragment.GRZXFra;
 import com.mad.trafficclient.util.Util;
 import com.mad.trafficclient.ws_java.ob23.BalanceUtil;
 import com.mad.trafficclient.zy_java.data.CarData;
@@ -274,6 +275,9 @@ public class Acc_Main extends Fragment implements View.OnClickListener {
                 break;
             case R.id.chongzhijilu:
                 to.Jilu();
+                Bundle args = new Bundle();
+                args.putString("MESSAGE", "充值记录");
+                getFragmentManager().beginTransaction().replace(R.id.maincontent, GRZXFra.newInstance(args)).commit();
                 break;
         }
     }

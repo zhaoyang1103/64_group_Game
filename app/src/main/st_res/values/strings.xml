@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="hldgl_spinner">
+        <item>路口升序</item>
+        <item>路口降序</item>
+        <item>红灯升序</item>
+        <item>红灯降序</item>
+
+        <item>绿灯升序</item>
+        <item>绿灯降序</item>
+
+        <item>黄灯升序</item>
+        <item>黄灯降序</item>
+
+
+    </string-array>
+</resources>
