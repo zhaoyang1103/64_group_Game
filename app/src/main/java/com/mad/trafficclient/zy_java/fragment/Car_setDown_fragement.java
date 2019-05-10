@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SlidingPaneLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mad.trafficclient.R;
+import com.mad.trafficclient.st_java.fragment.grzxfra.CZJLFra;
 import com.mad.trafficclient.util.Util;
 import com.mad.trafficclient.zy_java.manage.Chart_1;
 import com.mad.trafficclient.zy_java.view.Car_balacne_1;
+import com.mad.trafficclient.zy_java.view.My_talance_2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +52,8 @@ public class Car_setDown_fragement extends Fragment implements View.OnClickListe
 
     private void initView(View view) {
         imageView_Sliding = (ImageView) view.findViewById(R.id.imageView_Sliding);
+//        imageView_Sliding=getActivity().findViewById(R.id.imageView_Sliding);
+
         tv_title = (TextView) view.findViewById(R.id.tv_title);
         tx_username = (TextView) view.findViewById(R.id.tx_username);
         tx_username.setText("当前用户名：" + Util.getUserName(getContext()) + "");
@@ -62,8 +67,16 @@ public class Car_setDown_fragement extends Fragment implements View.OnClickListe
         my_record.setOnClickListener(this);
         list = new ArrayList<>();
         list.add(new Car_balacne_1());
-        list.add(new Chart_1());
-        list.add(new Chart_1());
+        list.add(new My_talance_2());
+        list.add(new CZJLFra());
+        imageView_Sliding.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SlidingPaneLayout viewById = getActivity().findViewById(R.id.slidingPL);
+                viewById.openPane();
+
+            }
+        });
         car_viewpager.setAdapter(new FragmentStatePagerAdapter(getFragmentManager()) {
             @Override
             public Fragment getItem(int i) {
@@ -105,7 +118,6 @@ public class Car_setDown_fragement extends Fragment implements View.OnClickListe
                 break;
         }
     }
-
 
 
 }

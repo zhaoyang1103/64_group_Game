@@ -75,8 +75,8 @@ public class CarStopManage extends Fragment implements View.OnClickListener, Com
         switches = new Switch[]{switch_1, switch_2, switch_3};
         context = getContext();
         requestQueue = Volley.newRequestQueue(context);
-        api_get = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_car_move ";
-        api_set = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/set_car_move  ";
+        api_get = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/get_car_move";
+        api_set = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/set_car_move";
         AnimationDrawable animationDrawable = (AnimationDrawable) image_lisght.getDrawable();
         animationDrawable.start();
         switch_1.setOnClickListener(this);
@@ -134,7 +134,7 @@ public class CarStopManage extends Fragment implements View.OnClickListener, Com
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        requestQueue.add(new JsonObjectRequest(JsonObjectRequest.Method.POST, api_set, object, new Response.Listener<JSONObject>() {
+        requestQueue.add(new JsonObjectRequest(JsonObjectRequest.Method.POST, api_get, object, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 try {
@@ -177,7 +177,7 @@ public class CarStopManage extends Fragment implements View.OnClickListener, Com
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        requestQueue.add(new JsonObjectRequest(JsonObjectRequest.Method.POST, api_get, object, new Response.Listener<JSONObject>() {
+        requestQueue.add(new JsonObjectRequest(JsonObjectRequest.Method.POST, api_set, object, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 try {

@@ -31,9 +31,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
+
+import static android.util.Log.i;
 
 /**
  * Created by 昭阳 on 2019/5/5.
@@ -93,19 +97,22 @@ public class CarData implements CarData_abs {
         switch (data) {
             case "zy":
                 if (progressDialog.getProgress() == 80) {
+                    Date date = new Date();
+                    i("开始时间", "dealData: " + date.getMinutes() + "分" + date.getSeconds());
+                    dealData();
+                    Date date1 = new Date();
+                    i("结束时间", "dealData: " + date1.getMinutes() + "分" + date1.getSeconds());
+                    getTu1();
+                    getTu2();
                     process += 20;
                     progressDialog.setProgress(process);
                     progressDialog.dismiss();
-                    dealData();
-                    getTu1();
-                    getTu2();
                     getTu3();
                     getTu4();
                     getTu5();
                     getTu6();
                     getTu7();
 
-//                    getB3();
                 }
                 break;
 
@@ -220,12 +227,12 @@ public class CarData implements CarData_abs {
             for (int j = 0; j < allpeccancy_list.size(); j++) {
                 if (allcar_list.get(i).getCarnumber().equals(allpeccancy_list.get(j).getCarnumber())) {
                     int count = allcar_list.get(i).getCount();
-                    if (count >= 1) {
-                        continue;
-                    }
-
+//                    if (count >= 1) {
+//                        break;
+//                    }
                     count++;
                     allcar_list.get(i).setCount(count);
+                    break;
                 }
             }
         }
@@ -240,7 +247,8 @@ public class CarData implements CarData_abs {
                 }
             }
         }
-        Map<String, Integer> mas = new HashMap<>();
+
+        HashMap<String, Integer> mas = new HashMap<>();
         for (int i = 0; i < allpeccancy_list.size(); i++) {
             mas.put(allpeccancy_list.get(i).getCarnumber(), allpeccancy_list.get(i).getCount());
         }
