@@ -25,10 +25,12 @@ import java.util.List;
 public class Subscribe_Main extends Fragment {
     private Context context;
     private GridView ob60_toSubscribe;
-    private TextView ob60_toAdd;
+    private GridView ob60_toAdd;
 
     private List<String> subscribeList;
     private List<String> addList;
+    private SubscribeAdapter subscribeAdapter;
+    private AddAdapter addAdapter;
 
     @Nullable
     @Override
@@ -38,12 +40,27 @@ public class Subscribe_Main extends Fragment {
         context = getContext();
         subscribeList = new ArrayList<>();
         addList = new ArrayList<>();
+        addList.add("推荐");
+        addList.add("安全驾驶");
+        addList.add("交通分类");
+        addList.add("科技类");
+        addList.add("路况类");
+        addList.add("汽车类");
+        addList.add("二手车类");
+        addList.add("改装车");
+        addList.add("违章");
+        subscribeAdapter = new SubscribeAdapter();
+        addAdapter = new AddAdapter();
+        ob60_toSubscribe.setAdapter(subscribeAdapter);
+        ob60_toAdd.setAdapter(addAdapter);
+        subscribeAdapter.notifyDataSetChanged();
+        addAdapter.notifyDataSetChanged();
         return view;
     }
 
     private void initView(View view) {
         ob60_toSubscribe = (GridView) view.findViewById(R.id.ob60_toSubscribe);
-        ob60_toAdd = (TextView) view.findViewById(R.id.ob60_toAdd);
+        ob60_toAdd = (GridView) view.findViewById(R.id.ob60_toAdd);
     }
 
 
@@ -65,9 +82,19 @@ public class Subscribe_Main extends Fragment {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.ob60_subscribe_item, parent, false);
-
+            ViewHolder viewHolder = new ViewHolder(convertView);
+            viewHolder.ob60_subscribe_text.setText(subscribeList.get(position));
+            viewHolder.ob60_grid_remove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    addList.add(subscribeList.get(position));
+                    subscribeList.remove(position);
+                    subscribeAdapter.notifyDataSetChanged();
+                    addAdapter.notifyDataSetChanged();
+                }
+            });
             return convertView;
         }
 
@@ -103,9 +130,19 @@ public class Subscribe_Main extends Fragment {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.ob60_add_item, parent, false);
-
+            ViewHolder viewHolder = new ViewHolder(convertView);
+            viewHolder.ob60_add_text.setText(addList.get(position));
+            viewHolder.ob60_grid_add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    subscribeList.add(addList.get(position));
+                    addList.remove(position);
+                    addAdapter.notifyDataSetChanged();
+                    subscribeAdapter.notifyDataSetChanged();
+                }
+            });
             return convertView;
         }
 
