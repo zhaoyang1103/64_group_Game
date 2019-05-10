@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:background="@drawable/ob40_title_bg"
+        android:gravity="center"
+        android:text="IC卡充值"
+        android:textColor="#111"
+        android:textSize="40dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="match_parent"
+            android:background="#3D608E" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="人员姓名：     管理员"
+                    android:textColor="#111"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="IC    卡号：     123456"
+                    android:textColor="#111"
+                    android:textSize="30dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="账户余额：    "
+                        android:textColor="#111"
+                        android:textSize="30dp" />
+
+                    <TextView
+                        android:id="@+id/ob40_tv_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50"
+                        android:textColor="#111"
+                        android:textSize="30dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="账户余额：    "
+                        android:textColor="#111"
+                        android:textSize="30dp" />
+
+                    <EditText
+                        android:id="@+id/ob40_edi_jine"
+                        android:paddingLeft="10dp"
+                        android:layout_width="150dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/ob40_title_bg"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:textColor="#111"
+                        android:textSize="30dp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/ob40_btn_chongzhi"
+                    android:layout_width="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/ob40_btn_bg"
+                    android:text="充值"
+                    android:textColor="#111"
+                    android:textSize="30dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="match_parent"
+            android:background="#3D608E" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#3D608E" />
+</LinearLayout>

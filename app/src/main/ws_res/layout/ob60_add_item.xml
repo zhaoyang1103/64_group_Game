@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="69dp">
+
+        <TextView
+            android:id="@+id/ob60_add_text"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/ob60_kuang"
+            android:gravity="center_vertical"
+            android:text="第一条我"
+            android:textColor="#111"
+            android:textSize="25dp" />
+
+        <ImageView
+            android:id="@+id/ob60_grid_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="110dp"
+            android:src="@drawable/add2" />
+    </RelativeLayout>
+</LinearLayout>

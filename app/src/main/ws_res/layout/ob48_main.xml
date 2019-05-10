@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="测试接口"
+        android:textColor="#111"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/ob48_btn_chaxun"
+        android:layout_width="500dp"
+        android:layout_height="100dp"
+        android:background="@android:color/holo_blue_dark"
+        android:text="查询所有传感器当前值"
+        android:textColor="#fff"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/o48_tv_results"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="返回结果："
+        android:textColor="#111"
+        android:textSize="20dp" />
+</LinearLayout>
