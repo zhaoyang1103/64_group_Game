@@ -9,7 +9,7 @@
         android:layout_height="69dp">
 
         <TextView
-            android:id="@+id/ob60_remove_text"
+            android:id="@+id/ob60_subscribe_text"
             android:layout_width="130dp"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
