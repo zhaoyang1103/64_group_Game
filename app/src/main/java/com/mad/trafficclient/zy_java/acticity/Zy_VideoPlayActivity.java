@@ -2,6 +2,7 @@ package com.mad.trafficclient.zy_java.acticity;
 
 import android.app.Activity;
 import android.graphics.Matrix;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
@@ -9,9 +10,12 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.mad.trafficclient.R;
+
+import java.util.Arrays;
 
 public class Zy_VideoPlayActivity extends Activity {
 
@@ -73,6 +77,13 @@ public class Zy_VideoPlayActivity extends Activity {
             int postion = getIntent().getIntExtra("videoPosition", 0);
             video_play.setVideoPath("android.resource://" + getPackageName() + "/raw/" + videoints[postion]);
             video_play.start();
+            video_play.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+
+                }
+            });
+            video_play.setMediaController(new MediaController(this,true));
 
 
         } else {
@@ -80,13 +91,14 @@ public class Zy_VideoPlayActivity extends Activity {
             video_play.setVisibility(View.GONE);
             int postion = getIntent().getIntExtra("videoPosition", 0);
             image_show.setImageResource(imageints[postion]);
+            Arrays.asList();
             matrix = image_show.getImageMatrix();
         }
 
         image_show.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-//                image_show.setScaleType(ImageView.ScaleType.MATRIX);
+                image_show.setScaleType(ImageView.ScaleType.MATRIX);
                 gestureDetector.onTouchEvent(event);
                 scaleGestureDetector.onTouchEvent(event);
                 return true;

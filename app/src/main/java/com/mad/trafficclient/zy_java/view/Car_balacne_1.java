@@ -8,15 +8,18 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,6 +30,9 @@ import com.android.volley.toolbox.Volley;
 import com.mad.trafficclient.R;
 import com.mad.trafficclient.util.Util;
 import com.mad.trafficclient.ws_java.ob23.BalanceUtil;
+import com.mad.trafficclient.ws_java.ob9.Acc_Bean;
+import com.mad.trafficclient.ws_java.ob9.Acc_Dao;
+import com.mad.trafficclient.ws_java.ob9.JiluBean;
 import com.mad.trafficclient.zy_java.bean.Balacne_Bean_1;
 
 import org.json.JSONException;
@@ -44,6 +50,7 @@ public class Car_balacne_1 extends Fragment {
     private String getBalance_api = "";
     private RequestQueue requestQueue;
     private Balance_1Adapter adapter;
+    private Acc_Dao dao;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,6 +75,14 @@ public class Car_balacne_1 extends Fragment {
         getBalance();
         adapter = new Balance_1Adapter();
         gv_balance.setAdapter(adapter);
+        gv_balance.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showDialog(position + 1);
+            }
+        });
+        dao = new Acc_Dao(context);
+
 
     }
 
@@ -157,23 +172,75 @@ public class Car_balacne_1 extends Fragment {
     }
 
 
-    private void showDialog(int carid) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+    private void showDialog(final int carid) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("我的充值");
         View view = View.inflate(context, R.layout.car_recharge_1, null);
         builder.setView(view);
+        final AlertDialog show = builder.show();
         final ViewHolder1 viewHolder1 = new ViewHolder1(view);
+
         viewHolder1.queding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int s = Integer.parseInt(viewHolder1.dialog_ed_money.getText().toString());
+                if (TextUtils.isEmpty(viewHolder1.dialog_ed_money.getText())) {
+                    Toast.makeText(context, "请输入金额", Toast.LENGTH_SHORT).show();
+                    return;
+
+                } else {
+                    int s = Integer.parseInt(viewHolder1.dialog_ed_money.getText().toString());
+                    rechargeCar(carid, s);
+                }
+
 
             }
         });
-        builder.show();
+        viewHolder1.quxiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                show.dismiss();
+            }
+        });
 
 
     }
+
+    private void rechargeCar(final int car, int money) {
+        String api = "http://" + Util.loadSetting(context).getUrl() + ":" + Util.loadSetting(context).getPort() + "/api/v2/set_car_account_recharge ";
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("UserName", Util.getUserName(context));
+            jsonObject.put("CarId", car);
+            jsonObject.put("Money", money);
+            requestQueue.add(new JsonObjectRequest(JsonObjectRequest.Method.POST, api, jsonObject, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject jsonObject) {
+                    try {
+                        if (jsonObject.getString("RESULT").equals("S")) {
+                            Toast.makeText(context, "充值成功", Toast.LENGTH_SHORT).show();
+                            getBalance();
+                        } else {
+                            Toast.makeText(context, "充值失败", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError volleyError) {
+                    Toast.makeText(context, "充值失败" + volleyError.toString(), Toast.LENGTH_SHORT).show();
+
+                }
+            }));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 
     public static
     class ViewHolder1 {
