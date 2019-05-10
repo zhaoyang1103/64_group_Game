@@ -23,6 +23,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.mad.trafficclient.R;
 import com.mad.trafficclient.util.Util;
+import com.mad.trafficclient.zy_java.data.CarData;
 import com.mad.trafficclient.zy_java.util.ZyUtil;
 import com.mad.trafficclient.zy_java.view.PeccancyQuery_2;
 
@@ -74,14 +75,14 @@ public class PeccancyQuery_1 extends Fragment implements View.OnClickListener {
             requestQueue.add(new JsonObjectRequest(JsonObjectRequest.Method.POST, get_sinpeccancy_api, object, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject jsonObject) {
-                    Log.i("查询结果", "onResponse: "+jsonObject.toString());
+                    Log.i("查询结果", "onResponse: " + jsonObject.toString());
                     try {
                         if (jsonObject.getString("RESULT").equals("S")) {
                             Toast.makeText(context, "查询成功", Toast.LENGTH_SHORT).show();
                             ZyUtil.saveCarNumber(context, s);
-                            getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.maincontent,new PeccancyQuery_2()).commit();
+                            getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.maincontent, new PeccancyQuery_2()).commit();
                         } else {
-                            Toast.makeText(context, "查询失败 此车没违章", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "查询失败 外网服务器的查询功能有毒", Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -109,12 +110,33 @@ public class PeccancyQuery_1 extends Fragment implements View.OnClickListener {
             return;
         } else {
             String s = "鲁" + edit_query.getText().toString().trim();
-            Log.i("发送的车牌号", "submit: "+s);
+            Log.i("发送的车牌号", "submit: " + s);
             jundagecarnumber(s);
+//            isPeccancy(s);
         }
 
         // TODO validate success, do something
 
 
     }
+
+    private void isPeccancy(String s) {
+        for (int i = 0; i < CarData.getSingle_peccancy().size(); i++) {
+            if (s.equals(CarData.getSingle_peccancy().get(i).getCarnumber())) {
+                Toast.makeText(context, "查询成功", Toast.LENGTH_SHORT).show();
+                ZyUtil.saveCarNumber(context, s);
+                getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.maincontent, new PeccancyQuery_2()).commit();
+                return;
+            }
+
+
+        }
+
+
+        Toast.makeText(context, "没有此车或此车无违章", Toast.LENGTH_SHORT).show();
+
+
+    }
+
+
 }

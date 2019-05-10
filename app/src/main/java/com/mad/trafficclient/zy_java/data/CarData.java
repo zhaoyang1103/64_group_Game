@@ -49,6 +49,11 @@ public class CarData implements CarData_abs {
     private static List<AllPersonBean.ROWSDETAILBean> allperson_list = new ArrayList<>();
     private static List<AllTypeBean.ROWSDETAILBean> alltype_list = new ArrayList<>();
     private static List<AllPeccancyBean.ROWSDETAILBean> single_peccancy = new ArrayList<>();
+
+    public static List<AllPeccancyBean.ROWSDETAILBean> getSingle_peccancy() {
+        return single_peccancy;
+    }
+
     private static Map map = new HashMap();
     private static int flag = 0;
     private String api_1 = "";

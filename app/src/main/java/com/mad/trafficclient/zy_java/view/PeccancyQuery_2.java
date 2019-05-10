@@ -132,8 +132,6 @@ public class PeccancyQuery_2 extends Fragment implements View.OnClickListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
     }
 
 
