@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_re_back"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#02FF02"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/tx_carid_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="1号小车"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/item_car_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tx_carid_show"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="50dp"
+        android:text="1号小车"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/item_car_index"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/yuan_off"
+        android:gravity="center"
+        android:padding="50dp"
+        android:text="100"
+        android:textSize="30dp" />
+</RelativeLayout>

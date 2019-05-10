@@ -70,6 +70,7 @@ public class CarData implements CarData_abs {
         Looper.prepare();
         progressDialog = new ProgressDialog(context);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setMessage("数据正在读取 请稍等");
         progressDialog.setMax(100);
         progressDialog.setCancelable(false);
         progressDialog.show();
@@ -92,6 +93,9 @@ public class CarData implements CarData_abs {
         switch (data) {
             case "zy":
                 if (progressDialog.getProgress() == 80) {
+                    process += 20;
+                    progressDialog.setProgress(process);
+                    progressDialog.dismiss();
                     dealData();
                     getTu1();
                     getTu2();
@@ -100,9 +104,7 @@ public class CarData implements CarData_abs {
                     getTu5();
                     getTu6();
                     getTu7();
-                    process += 20;
-                    progressDialog.setProgress(process);
-                    progressDialog.dismiss();
+
 //                    getB3();
                 }
                 break;
