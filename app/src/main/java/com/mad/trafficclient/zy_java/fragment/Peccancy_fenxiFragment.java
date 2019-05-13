@@ -68,8 +68,8 @@ public class Peccancy_fenxiFragment extends Fragment {
         lien_chart = (LineChart) view.findViewById(R.id.lien_chart);
         rowsdetailBeans = CarData.getallpeccancy_list();
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        sp_start_time.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, new String[]{"请选择时间", "请选择"}));
-        sp_end_time.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, new String[]{"请选择时间", "请选择"}));
+        sp_start_time.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, new String[]{"请选择时间"}));
+        sp_end_time.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, new String[]{"请选择时间"}));
 //        sp_start_time.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, new String[]{time}));
         sp_start_time.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -116,8 +116,6 @@ public class Peccancy_fenxiFragment extends Fragment {
 
                 ChartManage chartManage = new ChartManage(lien_chart);
                 chartManage.showLineChart((ArrayList<String>) getYData(start_long, end_long).get("x"), (ArrayList<Integer>) getYData(start_long, end_long).get("y"));
-
-
 
             }
         });
