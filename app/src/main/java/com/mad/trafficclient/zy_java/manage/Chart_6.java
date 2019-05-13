@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.github.mikephil.charting.charts.BarChart;
 import com.mad.trafficclient.R;
 import com.mad.trafficclient.zy_java.data.CarData;
+
 import com.mad.trafficclient.zy_java.manage.ChartManage;
 
 import java.util.ArrayList;
