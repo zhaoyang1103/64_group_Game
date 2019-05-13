@@ -15,11 +15,13 @@
             android:layout_height="50dp"
             android:src="@android:drawable/sym_action_call" />
 
-        <Spinner
+        <TextView
             android:id="@+id/sp_start_time"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"></Spinner>
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="请选择时间"></TextView>
 
         <TextView
             android:layout_width="0dp"
@@ -29,11 +31,13 @@
             android:text="至"
             android:textSize="30dp" />
 
-        <Spinner
+        <TextView
             android:id="@+id/sp_end_time"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"></Spinner>
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="请选择时间"></TextView>
 
         <TextView
             android:layout_width="0dp"

@@ -6,22 +6,15 @@ package com.mad.trafficclient.zy_java.fragment;
 
 import android.app.AlertDialog;
 import android.content.Context;
-
-
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.mad.trafficclient.R;
@@ -32,22 +25,25 @@ import com.mad.trafficclient.zy_java.manage.ChartManage;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class Peccancy_fenxiFragment extends Fragment {
+public class Peccancy_fenxiFragment extends Fragment implements View.OnClickListener {
 
-    private Spinner sp_start_time;
-    private Spinner sp_end_time;
+
     private LineChart lien_chart;
     private List<AllPeccancyBean.ROWSDETAILBean> rowsdetailBeans;
     private SimpleDateFormat simpleDateFormat;
+    private SimpleDateFormat simpleDateFormat1;
     private Context context;
     private long start_long;
     private long end_long;
+    private TextView sp_start_time;
+    private TextView sp_end_time;
 
     //private  void
     @Override
@@ -63,38 +59,17 @@ public class Peccancy_fenxiFragment extends Fragment {
 
     private void initView(View view) {
         context = getContext();
-        sp_start_time = (Spinner) view.findViewById(R.id.sp_start_time);
-        sp_end_time = (Spinner) view.findViewById(R.id.sp_end_time);
+
         lien_chart = (LineChart) view.findViewById(R.id.lien_chart);
         rowsdetailBeans = CarData.getallpeccancy_list();
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        sp_start_time.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, new String[]{"请选择时间"}));
-        sp_end_time.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, new String[]{"请选择时间"}));
-//        sp_start_time.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, new String[]{time}));
-        sp_start_time.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                showstartDialog_1();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        sp_end_time.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                show_endDialog_1();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+        simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
 
 
+        sp_start_time = (TextView) view.findViewById(R.id.sp_start_time);
+        sp_start_time.setOnClickListener(this);
+        sp_end_time = (TextView) view.findViewById(R.id.sp_end_time);
+        sp_end_time.setOnClickListener(this);
     }
 
 
@@ -110,13 +85,13 @@ public class Peccancy_fenxiFragment extends Fragment {
                 int year = viewById.getYear();
                 int month = viewById.getMonth();
                 int day = viewById.getDayOfMonth();
-                String time = year + ":" + month + ":" + day;
-                start_long = getLong(time);
-                sp_start_time.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, new String[]{time}));
+                String time = year + "-" + (month+1) + "-" + day;
+                start_long = getLong1(time);
+                sp_start_time.setText(time);
 
+                Map yData = getYData(start_long, end_long);
                 ChartManage chartManage = new ChartManage(lien_chart);
-                chartManage.showLineChart((ArrayList<String>) getYData(start_long, end_long).get("x"), (ArrayList<Integer>) getYData(start_long, end_long).get("y"));
-
+                chartManage.showLineChart((ArrayList<String>)yData.get("x"), (ArrayList<Integer>) yData.get("y"));
             }
         });
 
@@ -141,13 +116,15 @@ public class Peccancy_fenxiFragment extends Fragment {
                 int year = viewById.getYear();
                 int month = viewById.getMonth();
                 int day = viewById.getDayOfMonth();
-                String time = year + ":" + month + ":" + day;
-                end_long = getLong(time);
-                Log.i("结束的long", "onClick: " + end_long);
-                sp_end_time.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, new String[]{time}));
-                dialog.dismiss();
+                String time = year + "-" +( month+1) + "-" + day;
+                end_long = getLong1(time);
+
+                sp_end_time.setText(time);
+
+                Map yData = getYData(start_long, end_long);
                 ChartManage chartManage = new ChartManage(lien_chart);
-                chartManage.showLineChart((ArrayList<String>) getYData(start_long, end_long).get("x"), (ArrayList<Integer>) getYData(start_long, end_long).get("y"));
+                chartManage.showLineChart((ArrayList<String>)yData.get("x"), (ArrayList<Integer>) yData.get("y"));
+
             }
         });
 
@@ -161,33 +138,32 @@ public class Peccancy_fenxiFragment extends Fragment {
     }
 
     private Map getYData(long start_time, long endtime) {
-        float[] floats = new float[5];
+        float[] floats = new float[7];
         for (int i = 0; i < rowsdetailBeans.size(); i++) {
             Log.i("地址", "getYData: " + rowsdetailBeans.get(i).getPaddr());
+            Log.i("时间", "getYData: " + rowsdetailBeans.get(i).getDatetime());
             String datetime = rowsdetailBeans.get(i).getDatetime();
-            try {
-                Date parse = simpleDateFormat.parse(datetime);
-                long time = parse.getTime();
-                if (time < endtime && time > start_time) {
-                    if (rowsdetailBeans.get(i).getPaddr().equals("学院路")) {
-                        floats[0]++;
-                    } else if (rowsdetailBeans.get(i).getPaddr().equals("联想路")) {
-                        floats[1]++;
-                    } else if (rowsdetailBeans.get(i).getPaddr().equals("医院路")) {
-                        floats[2]++;
-                    } else if (rowsdetailBeans.get(i).getPaddr().equals("幸福路")) {
-                        floats[3]++;
-                    } else if (rowsdetailBeans.get(i).getPaddr().equals("环城快速路")) {
-                        floats[4]++;
-                    } else if (rowsdetailBeans.get(i).getPaddr().equals("环城高速")) {
-                        floats[5]++;
-                    }
-
+            long time = getLong(datetime);
+            Log.i("开始的long", "onClick: " + start_long);
+            Log.i("结束的long", "onClick: " + end_long);
+            Log.i("中间时间", "getYData: "+time);
+            if (time <=endtime && time >=start_time) {
+                if (rowsdetailBeans.get(i).getPaddr().equals("重庆路")) {
+                    floats[0]++;
+                } else if (rowsdetailBeans.get(i).getPaddr().equals("沈阳路")) {
+                    floats[1]++;
+                } else if (rowsdetailBeans.get(i).getPaddr().equals("南京路")) {
+                    floats[2]++;
+                } else if (rowsdetailBeans.get(i).getPaddr().equals("上海路")) {
+                    floats[3]++;
+                } else if (rowsdetailBeans.get(i).getPaddr().equals("广州路")) {
+                    floats[4]++;
+                } else if (rowsdetailBeans.get(i).getPaddr().equals("高速公路")) {
+                    floats[5]++;
+                } else if (rowsdetailBeans.get(i).getPaddr().equals("北京路")) {
+                    floats[6]++;
                 }
 
-
-            } catch (ParseException e) {
-                e.printStackTrace();
             }
 
 
@@ -195,13 +171,14 @@ public class Peccancy_fenxiFragment extends Fragment {
 
         ArrayList<String> x = new ArrayList<>();
         ArrayList<Integer> y = new ArrayList<>();
-
-        x.add("学院路");
-        x.add("联想路");
-        x.add("医院路");
-        x.add("幸福路");
-        x.add("环城快速路");
-        x.add("环城高速");
+        System.out.println(Arrays.asList(y)+"邮电费嘚瑟护");
+        x.add("重庆路");
+        x.add("沈阳路");
+        x.add("南京路");
+        x.add("上海路");
+        x.add("广州路");
+        x.add("高速公路");
+        x.add("北京路");
         for (int i = 0; i < floats.length; i++) {
             floats[i]++;
         }
@@ -221,5 +198,29 @@ public class Peccancy_fenxiFragment extends Fragment {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    private long getLong1(String date) {
+        try {
+            Date parse = simpleDateFormat1.parse(date);
+            long time = parse.getTime();
+            Log.i("123", "getLong: " + time);
+            return parse.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.sp_start_time:
+                showstartDialog_1();
+                break;
+            case R.id.sp_end_time:
+                show_endDialog_1();
+                break;
+        }
     }
 }
