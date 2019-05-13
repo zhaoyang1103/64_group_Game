@@ -184,8 +184,6 @@ public class Peccancy_fenxiFragment extends Fragment implements View.OnClickList
         for (int i = 0; i < floats.length; i++) {
             y.add((int) floats[i]);
         }
-
-
         Map map = new HashMap();
         map.put("x", x);
         map.put("y", y);
