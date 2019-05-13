@@ -85,13 +85,13 @@ public class Peccancy_fenxiFragment extends Fragment implements View.OnClickList
                 int year = viewById.getYear();
                 int month = viewById.getMonth();
                 int day = viewById.getDayOfMonth();
-                String time = year + "-" + (month+1) + "-" + day;
+                String time = year + "-" + (month + 1) + "-" + day;
                 start_long = getLong1(time);
                 sp_start_time.setText(time);
 
                 Map yData = getYData(start_long, end_long);
                 ChartManage chartManage = new ChartManage(lien_chart);
-                chartManage.showLineChart((ArrayList<String>)yData.get("x"), (ArrayList<Integer>) yData.get("y"));
+                chartManage.showLineChart((ArrayList<String>) yData.get("x"), (ArrayList<Integer>) yData.get("y"));
             }
         });
 
@@ -116,14 +116,14 @@ public class Peccancy_fenxiFragment extends Fragment implements View.OnClickList
                 int year = viewById.getYear();
                 int month = viewById.getMonth();
                 int day = viewById.getDayOfMonth();
-                String time = year + "-" +( month+1) + "-" + day;
+                String time = year + "-" + (month + 1) + "-" + day;
                 end_long = getLong1(time);
 
                 sp_end_time.setText(time);
 
                 Map yData = getYData(start_long, end_long);
                 ChartManage chartManage = new ChartManage(lien_chart);
-                chartManage.showLineChart((ArrayList<String>)yData.get("x"), (ArrayList<Integer>) yData.get("y"));
+                chartManage.showLineChart((ArrayList<String>) yData.get("x"), (ArrayList<Integer>) yData.get("y"));
 
             }
         });
@@ -146,10 +146,12 @@ public class Peccancy_fenxiFragment extends Fragment implements View.OnClickList
             long time = getLong(datetime);
             Log.i("开始的long", "onClick: " + start_long);
             Log.i("结束的long", "onClick: " + end_long);
-            Log.i("中间时间", "getYData: "+time);
-            if (time <=endtime && time >=start_time) {
+            Log.i("中间时间", "getYData: " + time);
+            if (time <= endtime && time >= start_time) {
                 if (rowsdetailBeans.get(i).getPaddr().equals("重庆路")) {
                     floats[0]++;
+                    Log.i("打印", "getYData: " + floats[0]);
+
                 } else if (rowsdetailBeans.get(i).getPaddr().equals("沈阳路")) {
                     floats[1]++;
                 } else if (rowsdetailBeans.get(i).getPaddr().equals("南京路")) {
@@ -171,7 +173,7 @@ public class Peccancy_fenxiFragment extends Fragment implements View.OnClickList
 
         ArrayList<String> x = new ArrayList<>();
         ArrayList<Integer> y = new ArrayList<>();
-        System.out.println(Arrays.asList(y)+"邮电费嘚瑟护");
+        System.out.println(Arrays.asList(y) + "邮电费嘚瑟护");
         x.add("重庆路");
         x.add("沈阳路");
         x.add("南京路");
@@ -180,8 +182,10 @@ public class Peccancy_fenxiFragment extends Fragment implements View.OnClickList
         x.add("高速公路");
         x.add("北京路");
         for (int i = 0; i < floats.length; i++) {
-            floats[i]++;
+            y.add((int) floats[i]);
         }
+
+
         Map map = new HashMap();
         map.put("x", x);
         map.put("y", y);
