@@ -39,6 +39,11 @@
             android:name=".login.RegActivity"
             android:label="@string/app_title"
             android:screenOrientation="landscape" />
+        <activity android:name=".st_java.activity.MapActivityST"></activity>
+        <activity android:name=".st_java.activity.YHDLZC_ZCActivity"></activity>
+        <activity android:name=".st_java.activity.YHDLZC_ZHMMActivity"></activity>
+        <activity android:name=".st_java.activity.YHDLZCActivity"></activity>
+
     </application>
 
 </manifest>

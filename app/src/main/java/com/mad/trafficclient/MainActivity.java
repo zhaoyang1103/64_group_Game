@@ -6,6 +6,7 @@ package com.mad.trafficclient;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -24,12 +25,16 @@ import android.widget.Toast;
 
 import com.mad.trafficclient.fragment.FragmentHome;
 import com.mad.trafficclient.fragment.Fragment_1;
+import com.mad.trafficclient.st_java.activity.YHDLZCActivity;
+import com.mad.trafficclient.st_java.activity.YHDLZC_ZCActivity;
 import com.mad.trafficclient.st_java.fragment.FeedbackFra;
 import com.mad.trafficclient.st_java.fragment.GRZXFra;
 import com.mad.trafficclient.st_java.fragment.LKCXFra;
+import com.mad.trafficclient.st_java.fragment.RZCXFra;
 import com.mad.trafficclient.st_java.fragment.SHZSFra;
 import com.mad.trafficclient.st_java.fragment.SHZSminFra;
 import com.mad.trafficclient.st_java.fragment.SSHJFra;
+import com.mad.trafficclient.st_java.fragment.TQXX61Fra;
 import com.mad.trafficclient.st_java.fragment.TQXXFra;
 import com.mad.trafficclient.st_java.fragment.YHGLFra;
 import com.mad.trafficclient.ws_java.ob1.Account_Main;
@@ -48,17 +53,22 @@ import com.mad.trafficclient.ws_java.ob60.Subscribe_Main;
 import com.mad.trafficclient.ws_java.ob7.YuZhiSetting;
 import com.mad.trafficclient.ws_java.ob9.Acc_Main;
 import com.mad.trafficclient.zy_java.data.CarData;
+import com.mad.trafficclient.zy_java.data.Cardata2;
 import com.mad.trafficclient.zy_java.fragment.BusManage10;
 import com.mad.trafficclient.zy_java.fragment.CarStopManage;
 import com.mad.trafficclient.zy_java.fragment.Car_setDown_fragement;
 import com.mad.trafficclient.zy_java.fragment.LightManage_2;
 import com.mad.trafficclient.zy_java.fragment.Message_Main;
+import com.mad.trafficclient.zy_java.fragment.MyTrafficMain;
 import com.mad.trafficclient.zy_java.fragment.PeccancyQuery_1;
+import com.mad.trafficclient.zy_java.fragment.Peccancy_fenxiFragment;
+import com.mad.trafficclient.zy_java.fragment.Right_road_fragment;
 import com.mad.trafficclient.zy_java.fragment.Swip_test;
 import com.mad.trafficclient.zy_java.fragment.VideoFragment;
 import com.mad.trafficclient.zy_java.fragment.Zxing_fragment;
 import com.mad.trafficclient.zy_java.fragment.Zy_charmain;
 import com.mad.trafficclient.zy_java.fragment.Zy_webview;
+import com.mad.trafficclient.zy_java.fragment_test.Peccancy_fenxi_58;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -288,13 +298,10 @@ public class MainActivity extends FragmentActivity implements Acc_Main.To {
                         getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Account_Main()).commit();
                         //过
                         tV_title.setText(actionTexts[arg2]);
-
                         break;
-
                     case 1:
                         getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new LightManage_2()).commit();
                         tV_title.setText(actionTexts[arg2]);
-
                         break;
 
                     case 2:
@@ -495,7 +502,9 @@ public class MainActivity extends FragmentActivity implements Acc_Main.To {
                         tV_title.setText(actionTexts[arg2]);
                         break;
                     case 43:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Acc_Main()).commit();
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Acc_Main()).commit();
+                        Intent intent = new Intent(MainActivity.this, YHDLZCActivity.class);
+                        startActivity(intent);
                         tV_title.setText(actionTexts[arg2]);
                         break;
                     case 44:
@@ -503,7 +512,7 @@ public class MainActivity extends FragmentActivity implements Acc_Main.To {
                         tV_title.setText(actionTexts[arg2]);
                         break;
                     case 45:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Swip_test()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new MyTrafficMain()).commit();
                         tV_title.setText(actionTexts[arg2]);
                         break;
                     case 46:
@@ -535,7 +544,7 @@ public class MainActivity extends FragmentActivity implements Acc_Main.To {
 
 
                     case 52:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Fragment_1()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new RZCXFra()).commit();
                         tV_title.setText(actionTexts[arg2]);
                         break;
 
@@ -565,7 +574,7 @@ public class MainActivity extends FragmentActivity implements Acc_Main.To {
 
 
                     case 57:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Fragment_1()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Peccancy_fenxi_58()).commit();
                         tV_title.setText(actionTexts[arg2]);
                         break;
 
@@ -580,7 +589,7 @@ public class MainActivity extends FragmentActivity implements Acc_Main.To {
                         tV_title.setText(actionTexts[arg2]);
                         break;
                     case 60:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Fragment_1()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new PeccancyQuery_1()).commit();
                         tV_title.setText(actionTexts[arg2]);
                         break;
                     case 61:
@@ -588,7 +597,7 @@ public class MainActivity extends FragmentActivity implements Acc_Main.To {
                         tV_title.setText(actionTexts[arg2]);
                         break;
                     case 62:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new SubwayMain()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Right_road_fragment()).commit();
                         tV_title.setText(actionTexts[arg2]);
                         break;
                     case 63:
@@ -608,7 +617,7 @@ public class MainActivity extends FragmentActivity implements Acc_Main.To {
                         break;
                 }
 
-                int[] ints = new int[]{8, 12, 31};
+                int[] ints = new int[]{8, 12, 31, 44};
 
                 for (int i = 0; i < ints.length; i++) {
                     if (arg2 == ints[i]) {
