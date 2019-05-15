@@ -118,7 +118,6 @@ public class Subscribe_Main extends Fragment {
                 this.ob60_subscribe_text = (TextView) rootView.findViewById(R.id.ob60_subscribe_text);
                 this.ob60_grid_remove = (ImageView) rootView.findViewById(R.id.ob60_grid_remove);
             }
-
         }
     }
 

@@ -593,11 +593,11 @@ public class MainActivity extends FragmentActivity implements Acc_Main.To {
                         tV_title.setText(actionTexts[arg2]);
                         break;
                     case 61:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Fragment_1()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Right_road_fragment()).commit();
                         tV_title.setText(actionTexts[arg2]);
                         break;
                     case 62:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Right_road_fragment()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new TQXX61Fra()).commit();
                         tV_title.setText(actionTexts[arg2]);
                         break;
                     case 63:
