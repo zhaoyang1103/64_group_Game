@@ -9,22 +9,22 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mad.trafficclient.R;
 import com.mad.trafficclient.zy_java.view.Left_Message;
+import com.mad.trafficclient.zy_java.view.Light_traffic_fragment;
 import com.mad.trafficclient.zy_java.view.Right_message;
 
 
-public class Message_Main extends Fragment implements View.OnClickListener {
+public class MyTrafficMain extends Fragment implements View.OnClickListener {
 
     private RelativeLayout fragment_test;
     private TextView message_query;
     private TextView message_fenxi;
     private FragmentTransaction fragmentTransaction;
-    private Left_Message left_message;
+    private Light_traffic_fragment left_message;
     private Right_message right_message;
 
     @Override
@@ -45,7 +45,7 @@ public class Message_Main extends Fragment implements View.OnClickListener {
         message_fenxi.setOnClickListener(this);
         message_query.setBackgroundResource(R.drawable.back_mymessage_2);
         message_fenxi.setBackgroundResource(R.drawable.back_mymessage);
-        left_message = new Left_Message();
+        left_message = new Light_traffic_fragment();
         right_message = new Right_message();
         getFragmentManager().beginTransaction().add(R.id.fragment_test, left_message).commit();
         getFragmentManager().beginTransaction().add(R.id.fragment_test, right_message).commit();
