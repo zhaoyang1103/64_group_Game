@@ -15,6 +15,7 @@ import com.mad.trafficclient.ws_java.ob5.SenseDao;
 import com.mad.trafficclient.zy_java.fragment.LineCharMain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -33,7 +34,7 @@ public class LineShowFrag extends Fragment {
     private String mParam2;
     private int postion_data;
     private LineChart lineChart;
-    private Timer timer;
+    private static Timer timer;
     private List<IndexBean> list;
     private SenseDao senseDao;
     private ArrayList<String> x;
@@ -68,6 +69,10 @@ public class LineShowFrag extends Fragment {
         }
     }
 
+    public static Timer getTimer() {
+        return timer;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -98,9 +103,9 @@ public class LineShowFrag extends Fragment {
 
     }
 
-    private  synchronized  void showData() {
-      x=new ArrayList<>();
-      y=new ArrayList<>();
+    private void showData() {
+        x = new ArrayList<>();
+        y = new ArrayList<>();
         list = senseDao.queryForAll();
         for (int i = 0; i < list.size(); i++) {
             i("LineShowFrag", "" + list.get(i).toString());
@@ -142,6 +147,8 @@ public class LineShowFrag extends Fragment {
 
             }
         }
+        Arrays.asList("XXXXX的数据"+x);
+        Arrays.asList("YYYYY的数据"+y);
         handler.sendEmptyMessage(0);
 
     }

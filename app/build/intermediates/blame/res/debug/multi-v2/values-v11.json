@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\AndroidStudioProjects\\lx_0428\\TrafficClient\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
+            "outputFile": "E:\\AndroidStudioProjects\\lx_0505\\TrafficClient\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
             "map": [
                 {
-                    "source": "E:\\AndroidStudioProjects\\lx_0428\\TrafficClient\\app\\src\\main\\res\\values-v11\\styles.xml",
+                    "source": "E:\\AndroidStudioProjects\\lx_0505\\TrafficClient\\app\\src\\main\\res\\values-v11\\styles.xml",
                     "from": {
                         "startLines": "6",
                         "startColumns": "4",

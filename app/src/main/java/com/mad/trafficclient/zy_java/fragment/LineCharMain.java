@@ -28,6 +28,12 @@ import com.mad.trafficclient.zy_java.manage.Chart_4;
 import com.mad.trafficclient.zy_java.manage.Chart_5;
 import com.mad.trafficclient.zy_java.manage.Chart_6;
 import com.mad.trafficclient.zy_java.manage.Chart_7;
+import com.mad.trafficclient.zy_java.manage.IndexLine1_Frag;
+import com.mad.trafficclient.zy_java.manage.IndexLine2_Frag;
+import com.mad.trafficclient.zy_java.manage.IndexLine3_Frag;
+import com.mad.trafficclient.zy_java.manage.IndexLine4_Frag;
+import com.mad.trafficclient.zy_java.manage.IndexLine5_Frag;
+import com.mad.trafficclient.zy_java.manage.IndexLine6_Frag;
 import com.mad.trafficclient.zy_java.manage.LineShowFrag;
 import com.mad.trafficclient.zy_java.view.GlideView;
 
@@ -65,6 +71,12 @@ public class LineCharMain extends Fragment {
         return view;
     }
 
+    @Override
+    public void onDestroy() {
+        LineShowFrag.getTimer().cancel();
+        super.onDestroy();
+    }
+
     public static Fragment getIntance(int position) {
         LineCharMain lineCharMain = new LineCharMain();
         Bundle bundle = new Bundle();
@@ -79,18 +91,12 @@ public class LineCharMain extends Fragment {
         glideview = (GlideView) view.findViewById(R.id.glideview);
         list = new ArrayList<>();
         context = getContext();
-        Fragment intance = LineShowFrag.getIntance(0);
-        Fragment intance1 = LineShowFrag.getIntance(1);
-        Fragment intance2 = LineShowFrag.getIntance(1);
-        Fragment intance3 = LineShowFrag.getIntance(1);
-        Fragment intance4 = LineShowFrag.getIntance(1);
-        Fragment intance5 = LineShowFrag.getIntance(1);
-        list.add(intance);
-        list.add(intance1);
-        list.add(intance2);
-        list.add(intance3);
-        list.add(intance4);
-        list.add(intance5);
+        list.add(new IndexLine1_Frag());
+        list.add(new IndexLine2_Frag());
+        list.add(new IndexLine3_Frag());
+        list.add(new IndexLine4_Frag());
+        list.add(new IndexLine5_Frag());
+        list.add(new IndexLine6_Frag());
         Adapter adapter = new Adapter(getFragmentManager());
         viewpager.setAdapter(adapter);
         addData();
@@ -109,8 +115,7 @@ public class LineCharMain extends Fragment {
 
             @Override
             public void onPageScrollStateChanged(int i) {
-//                glideview.setIndex(context, i);
-//                getshow(i);
+
             }
         });
 
