@@ -6,6 +6,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -17,6 +18,8 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.RadarData;
+import com.github.mikephil.charting.data.RadarDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 
 import java.text.DecimalFormat;
@@ -32,6 +35,40 @@ public class ChartManage {
     private LineChart lineChart;
     private XAxis xAxis;
     private YAxis yleft, yright;
+    private RadarChart radarChart;
+
+    public ChartManage(RadarChart radarChart) {
+        this.radarChart = radarChart;
+        radarChart.setDescription("");
+        radarChart.getLegend().setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
+        radarChart.setDrawWeb(true);
+        xAxis = radarChart.getXAxis();
+        xAxis.setEnabled(false);
+
+
+    }
+
+    public void showReChart(ArrayList<String> x, ArrayList<Integer> y) {
+        ArrayList<Entry> entries = new ArrayList<>();
+
+        for (int i = 0; i < y.size(); i++) {
+            entries.add(new Entry(y.get(i), i));
+        }
+        int[] ints = new int[]{Color.parseColor("#029ED9"), Color.parseColor("#34FF67")
+                , Color.parseColor("#EF519D")
+                , Color.parseColor("#FF0202")
+                , Color.parseColor("#6702FF")};
+        RadarDataSet radarDataSet = new RadarDataSet(entries, "");
+        radarDataSet.setFillColor(Color.GREEN);
+        radarDataSet.setColors(ints);
+        radarDataSet.setDrawFilled(true);
+        RadarData radarData = new RadarData(x, radarDataSet);
+//        radarData
+        radarData.setValueTextSize(1);
+        radarChart.setData(radarData);
+        radarChart.invalidate();
+
+    }
 
     public ChartManage(PieChart pieChart) {
         this.pieChart = pieChart;
@@ -182,6 +219,7 @@ public class ChartManage {
 
         PieDataSet pieDataSet = new PieDataSet(entries, "");
         pieDataSet.setColors(ints);
+        pieChart.getLegend().setTextSize(25);
         PieData pieData = new PieData(x, pieDataSet);
         pieDataSet.setValueFormatter(new PercentFormatter(new DecimalFormat("0.00")));
         pieChart.getLegend().setPosition(Legend.LegendPosition.RIGHT_OF_CHART);

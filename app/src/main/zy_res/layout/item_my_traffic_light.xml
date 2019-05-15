@@ -23,7 +23,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="10dp"
         android:gravity="left">
 
         <TextView
@@ -63,7 +63,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:gravity="right">
 
         <TextView
@@ -76,7 +76,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_margin="10dp"
         android:gravity="left">
 
         <LinearLayout
@@ -138,16 +138,17 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/image_heng_show"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:src="@drawable/hongdeng" />
 
         <ImageView
+            android:id="@+id/image_zong_show"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-
             android:src="@drawable/hongdeng" />
 
         <LinearLayout
@@ -161,17 +162,17 @@
                 android:id="@+id/bt_hengxaing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:paddingLeft="50dp"
-                android:layout_marginTop="50dp"
                 android:paddingRight="50dp"
                 android:text="横向" />
 
             <Button
                 android:id="@+id/bt_zongxiang"
                 android:layout_width="wrap_content"
-                android:layout_marginBottom="50dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:paddingLeft="50dp"
                 android:paddingRight="50dp"
                 android:text="纵向" />
