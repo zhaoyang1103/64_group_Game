@@ -8,24 +8,29 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mad.trafficclient.R;
-import com.mad.trafficclient.st_java.bean.YHFLBean;
+import com.mad.trafficclient.st_java.bean.YHGLBean;
+import com.mad.trafficclient.zy_java.bean.AllPersonBean;
+import com.mad.trafficclient.zy_java.data.CarData;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class YHGLFra extends Fragment {
     private ListView listView;
     private Context context;
     private YHGLAda yhglAda;
-    private ArrayList<YHFLBean> beans;
-
+    private ArrayList<YHGLBean> beans;
+    private List<AllPersonBean.ROWSDETAILBean> rowsdetailBeans;
 
     @Nullable
     @Override
@@ -38,15 +43,37 @@ public class YHGLFra extends Fragment {
     }
 
     private void initListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
 
     }
 
     private void initData() {
         context = getContext();
+        rowsdetailBeans = CarData.getallperson_list();
         beans = new ArrayList<>();
-        beans.add(new YHFLBean(false, true, true));
-        beans.add(new YHFLBean(false, true, true));
-        beans.add(new YHFLBean(false, true, true));
+        for (int i = 0; i < rowsdetailBeans.size(); i++) {
+            AllPersonBean.ROWSDETAILBean rowsdetailBean = rowsdetailBeans.get(i);
+            YHGLBean e = new YHGLBean();
+            String psex = rowsdetailBean.getPsex();
+            if (psex.equals("男")) {
+                e.setIcon(R.drawable.touxiang_2);
+            } else {
+                e.setIcon(R.drawable.touxiang_1);
+            }
+            e.setUsername("用户名:" + rowsdetailBean.getUsername());
+            e.setPname("姓名:" + rowsdetailBean.getPname());
+            e.setPtel("电话" + rowsdetailBean.getPtel());
+            e.setBtn_shoucang_state(false);
+            e.setBtn_shanchu_state(false);
+            e.setTime_state(false);
+            e.setTv_shoucang_state(false);
+            beans.add(e);
+        }
         yhglAda = new YHGLAda(beans);
         listView.setAdapter(yhglAda);
     }
@@ -58,11 +85,11 @@ public class YHGLFra extends Fragment {
     public class YHGLAda extends BaseAdapter {
 
         private ViewHolder viewHolder;
-        private YHFLBean item;
-        private ArrayList<YHFLBean> beans;
+        private YHGLBean item;
+        private ArrayList<YHGLBean> beans;
 
 
-        public YHGLAda(ArrayList<YHFLBean> beans) {
+        public YHGLAda(ArrayList<YHGLBean> beans) {
             this.beans = beans;
         }
 
@@ -72,7 +99,7 @@ public class YHGLFra extends Fragment {
         }
 
         @Override
-        public YHFLBean getItem(int position) {
+        public YHGLBean getItem(int position) {
             return beans.get(position);
         }
 
@@ -82,23 +109,69 @@ public class YHGLFra extends Fragment {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             View view = View.inflate(context, R.layout.ada_yhgl, null);
             item = getItem(position);
             viewHolder = new ViewHolder(view);
+            viewHolder.image.setBackgroundResource(item.getIcon());
+            viewHolder.username.setText(item.getUsername());
+            viewHolder.pname.setText(item.getPname());
+            viewHolder.ptel.setText(item.getPtel());
+            viewHolder.time.setText(item.getTime());
             if (item.isBtn_shoucang_state()) {
                 viewHolder.btn_shoucang.setVisibility(View.VISIBLE);
                 viewHolder.btn_shanchu.setVisibility(View.VISIBLE);
+                viewHolder.image.setVisibility(View.GONE);
             } else {
                 viewHolder.btn_shoucang.setVisibility(View.GONE);
                 viewHolder.btn_shanchu.setVisibility(View.GONE);
+                viewHolder.image.setVisibility(View.VISIBLE);
             }
-            initAdaData();
+            if (item.isTime_state()) {
+                viewHolder.time.setVisibility(View.VISIBLE);
+            } else {
+                viewHolder.time.setVisibility(View.GONE);
+            }
+            if (item.isTv_shoucang_state()) {
+                viewHolder.tv_shoucang.setVisibility(View.VISIBLE);
+            } else {
+                viewHolder.tv_shoucang.setVisibility(View.GONE);
+            }
+            viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (beans.get(position).isBtn_shoucang_state()) {
+                        beans.get(position).setBtn_shoucang_state(false);
+                    } else {
+                        beans.get(position).setBtn_shoucang_state(true);
+                    }
+                    notifyDataSetChanged();
+                }
+            });
+
+            viewHolder.btn_shanchu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    beans.remove(position);
+                    notifyDataSetChanged();
+                }
+            });
+
+            viewHolder.btn_shoucang.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    YHGLBean yhflBean = beans.get(position);
+                    yhflBean.setTv_shoucang_state(true);
+                    yhflBean.setTime_state(true);
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.M.d hh:mm");
+                    yhflBean.setTime(simpleDateFormat.format(new Date()));
+                    notifyDataSetChanged();
+                }
+            });
+
             initAdaListener();
             return view;
         }
-
-        private boolean state = true;
 
         private void initAdaListener() {
 //            viewHolder.relativeLayout.setOnTouchListener(new View.OnTouchListener() {
@@ -132,28 +205,6 @@ public class YHGLFra extends Fragment {
 //                    return true;
 //                }
 //            });
-            viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (item.isBtn_shoucang_state()) {
-                        Toast.makeText(context, "VISIBLE", Toast.LENGTH_SHORT).show();
-//                        viewHolder.btn_shoucang.setVisibility(View.VISIBLE);
-//                        viewHolder.btn_shanchu.setVisibility(View.VISIBLE);
-                        item.setBtn_shoucang_state(false);
-                    } else {
-                        Toast.makeText(context, "GONE", Toast.LENGTH_SHORT).show();
-//                        viewHolder.btn_shoucang.setVisibility(View.GONE);
-//                        viewHolder.btn_shanchu.setVisibility(View.GONE);
-                        item.setBtn_shoucang_state(true);
-                    }
-                    notifyDataSetChanged();
-                }
-            });
-
-        }
-
-        private void initAdaData() {
-
         }
 
         public class ViewHolder {

@@ -17,7 +17,7 @@ public class LoadingDialog {
 	public static SimpleDateFormat format;
 	
 	public static void showToast(Context context,String msg){
-		Toast.makeText(context,msg, 1).show();
+		Toast.makeText(context,msg, Toast.LENGTH_LONG).show();
 	}
 	
 	public static void showDialog(Context context){

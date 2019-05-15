@@ -118,12 +118,4 @@
         android:padding="10dp"
         android:text="删除"
         android:textColor="#000" />
-
-    <ImageView
-        android:id="@+id/iv_back"
-        android:background="@drawable/icon101"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
 </LinearLayout>

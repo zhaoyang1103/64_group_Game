@@ -1,41 +1,45 @@
 package com.mad.trafficclient.st_java.bean;
 
-public class YHFLBean {
+public class YHGLBean {
     private int icon;
 
-    private boolean icon_state;
+    private boolean icon_state = true;
 
     private String username;
     private String pname;
     private String ptel;
 
     private String time;
+
+    private boolean time_state = false;
+
     private String tv_guanliyuan = "一般管理员";
     private String tv_shoucang = "已收藏";
+
+    private boolean tv_shoucang_state = false;
+
     private String btn_shoucang;
     private String btn_shanchu;
 
     private boolean btn_shoucang_state = false;
     private boolean btn_shanchu_state = false;
-    private boolean iv_back_st = false;
 
-    public YHFLBean(int icon, boolean icon_state, String username, String pname, String ptel, String time, String tv_guanliyuan, String tv_shoucang, String btn_shoucang, String btn_shanchu, boolean btn_shoucang_state, boolean btn_shanchu_state) {
+    public YHGLBean() {
+    }
+
+    public YHGLBean(int icon, boolean icon_state, String username, String pname, String ptel, String time, boolean time_state, String tv_guanliyuan, String tv_shoucang, boolean tv_shoucang_state, String btn_shoucang, String btn_shanchu, boolean btn_shoucang_state, boolean btn_shanchu_state) {
         this.icon = icon;
         this.icon_state = icon_state;
         this.username = username;
         this.pname = pname;
         this.ptel = ptel;
         this.time = time;
+        this.time_state = time_state;
         this.tv_guanliyuan = tv_guanliyuan;
         this.tv_shoucang = tv_shoucang;
+        this.tv_shoucang_state = tv_shoucang_state;
         this.btn_shoucang = btn_shoucang;
         this.btn_shanchu = btn_shanchu;
-        this.btn_shoucang_state = btn_shoucang_state;
-        this.btn_shanchu_state = btn_shanchu_state;
-    }
-
-    public YHFLBean(boolean icon_state, boolean btn_shoucang_state, boolean btn_shanchu_state) {
-        this.icon_state = icon_state;
         this.btn_shoucang_state = btn_shoucang_state;
         this.btn_shanchu_state = btn_shanchu_state;
     }
@@ -88,6 +92,14 @@ public class YHFLBean {
         this.time = time;
     }
 
+    public boolean isTime_state() {
+        return time_state;
+    }
+
+    public void setTime_state(boolean time_state) {
+        this.time_state = time_state;
+    }
+
     public String getTv_guanliyuan() {
         return tv_guanliyuan;
     }
@@ -102,6 +114,14 @@ public class YHFLBean {
 
     public void setTv_shoucang(String tv_shoucang) {
         this.tv_shoucang = tv_shoucang;
+    }
+
+    public boolean isTv_shoucang_state() {
+        return tv_shoucang_state;
+    }
+
+    public void setTv_shoucang_state(boolean tv_shoucang_state) {
+        this.tv_shoucang_state = tv_shoucang_state;
     }
 
     public String getBtn_shoucang() {
@@ -135,5 +155,4 @@ public class YHFLBean {
     public void setBtn_shanchu_state(boolean btn_shanchu_state) {
         this.btn_shanchu_state = btn_shanchu_state;
     }
-
 }

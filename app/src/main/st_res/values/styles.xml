@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="TV_Opinion">
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="TV_rzcx">
         <item name="android:textSize">20dp</item>
     </style>
 </resources>
