@@ -46,6 +46,10 @@
             android:name="com.mad.trafficclient.login.RegActivity"
             android:label="@string/app_title"
             android:screenOrientation="landscape" />
+        <activity android:name="com.mad.trafficclient.st_java.activity.MapActivityST" />
+        <activity android:name="com.mad.trafficclient.st_java.activity.YHDLZC_ZCActivity" />
+        <activity android:name="com.mad.trafficclient.st_java.activity.YHDLZC_ZHMMActivity" />
+        <activity android:name="com.mad.trafficclient.st_java.activity.YHDLZCActivity" />
     </application>
 
 </manifest>

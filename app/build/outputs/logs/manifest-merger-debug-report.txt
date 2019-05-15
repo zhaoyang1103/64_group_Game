@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:2:1-44:12
-INJECTED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:2:1-44:12
-INJECTED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:2:1-44:12
-INJECTED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:2:1-44:12
+ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:2:1-49:12
+INJECTED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:2:1-49:12
+INJECTED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:2:1-49:12
+INJECTED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:2:1-49:12
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\wzy\.gradle\caches\transforms-2\files-2.1\42dfd4d2a95bed4c8bc5211e7eb15f79\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\wzy\.gradle\caches\transforms-2\files-2.1\db5fd643e58758a6dae9f3fbcdf0896c\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:support-v4:28.0.0] C:\Users\wzy\.gradle\caches\transforms-2\files-2.1\fac7daaf54f0d8700d7daf6480ee4306\AndroidManifest.xml:17:1-22:12
@@ -33,9 +33,9 @@ MERGED from [com.android.support:interpolator:28.0.0] C:\Users\wzy\.gradle\cache
 MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\wzy\.gradle\caches\transforms-2\files-2.1\13d377f95df6e9e4cc9a93427c917040\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\wzy\.gradle\caches\transforms-2\files-2.1\703d0e6dcf1ee61f813d59591de98752\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\wzy\.gradle\caches\transforms-2\files-2.1\eed511c9ae81e15a1401578da4ee8df1\AndroidManifest.xml:17:1-22:12
-INJECTED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:2:1-44:12
-INJECTED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:2:1-44:12
-INJECTED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:2:1-44:12
+INJECTED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:2:1-49:12
+INJECTED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:2:1-49:12
+INJECTED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:2:1-49:12
 	package
 		ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:3:5-36
 		INJECTED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml
@@ -59,7 +59,7 @@ ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidMa
 	android:name
 		ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:8:22-76
 application
-ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:10:5-42:19
+ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:10:5-47:19
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\wzy\.gradle\caches\transforms-2\files-2.1\db5fd643e58758a6dae9f3fbcdf0896c\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\wzy\.gradle\caches\transforms-2\files-2.1\db5fd643e58758a6dae9f3fbcdf0896c\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support:support-compat:28.0.0] C:\Users\wzy\.gradle\caches\transforms-2\files-2.1\bd5470d87f51f3836b4383e20fd1b815\AndroidManifest.xml:22:5-94
@@ -128,6 +128,22 @@ ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidMa
 		ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:40:13-46
 	android:name
 		ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:39:13-46
+activity#com.mad.trafficclient.st_java.activity.MapActivityST
+ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:42:9-77
+	android:name
+		ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:42:19-65
+activity#com.mad.trafficclient.st_java.activity.YHDLZC_ZCActivity
+ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:43:9-81
+	android:name
+		ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:43:19-69
+activity#com.mad.trafficclient.st_java.activity.YHDLZC_ZHMMActivity
+ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:44:9-83
+	android:name
+		ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:44:19-71
+activity#com.mad.trafficclient.st_java.activity.YHDLZCActivity
+ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:45:9-78
+	android:name
+		ADDED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml:45:19-66
 uses-sdk
 INJECTED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from E:\AndroidStudioProjects\lx_0505\TrafficClient\app\src\main\AndroidManifest.xml

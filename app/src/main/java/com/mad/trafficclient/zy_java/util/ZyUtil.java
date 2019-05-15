@@ -2,7 +2,11 @@ package com.mad.trafficclient.zy_java.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v4.media.session.MediaSessionCompat;
 import android.widget.CalendarView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,6 +40,41 @@ public class ZyUtil {
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.remove(carunmber);
         edit.commit();
+    }
+
+    public static void saveList(Context context, UtilBean bean) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("l_test", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String list = sharedPreferences.getString("list", "[]");
+        List<UtilBean> data = new Gson().fromJson(list, new TypeToken<List<UtilBean>>() {
+        }.getType());
+        data.add(bean);
+        String s = new Gson().toJson(data);
+        editor.putString("list", s);
+        editor.commit();
+    }
+
+    public static List<UtilBean> getList(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("l_test", Context.MODE_PRIVATE);
+        String list = sharedPreferences.getString("list", "[]");
+        List<UtilBean> data = new Gson().fromJson(list, new TypeToken<List<UtilBean>>() {
+        }.getType());
+        return data;
+    }
+
+    public static void deteleUser(Context context, String name) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("l_test", Context.MODE_PRIVATE);
+        String list = sharedPreferences.getString("list", "[]");
+        List<UtilBean> data = new Gson().fromJson(list, new TypeToken<List<UtilBean>>() {
+        }.getType());
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).getName().equals(name)) {
+                data.remove(i);
+            }
+        }
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("list", new Gson().toJson(data));
+        editor.commit();
     }
 
 

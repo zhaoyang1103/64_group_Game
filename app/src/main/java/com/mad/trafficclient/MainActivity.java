@@ -59,6 +59,7 @@ import com.mad.trafficclient.zy_java.data.Cardata2;
 import com.mad.trafficclient.zy_java.fragment.BusManage10;
 import com.mad.trafficclient.zy_java.fragment.CarStopManage;
 import com.mad.trafficclient.zy_java.fragment.Car_setDown_fragement;
+import com.mad.trafficclient.zy_java.fragment.Fragment_1_test;
 import com.mad.trafficclient.zy_java.fragment.LightManage_2;
 import com.mad.trafficclient.zy_java.fragment.Message_Main;
 import com.mad.trafficclient.zy_java.fragment.MyTrafficMain;
@@ -540,7 +541,7 @@ public class MainActivity extends FragmentActivity implements Acc_Main.To {
                         break;
 
                     case 51:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Fragment_1()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Fragment_1_test()).commit();
                         tV_title.setText(actionTexts[arg2]);
                         break;
 
