@@ -27,6 +27,7 @@ import com.mad.trafficclient.fragment.FragmentHome;
 import com.mad.trafficclient.fragment.Fragment_1;
 import com.mad.trafficclient.st_java.activity.YHDLZCActivity;
 import com.mad.trafficclient.st_java.activity.YHDLZC_ZCActivity;
+import com.mad.trafficclient.st_java.fragment.CLSFCXFra;
 import com.mad.trafficclient.st_java.fragment.FeedbackFra;
 import com.mad.trafficclient.st_java.fragment.GRZXFra;
 import com.mad.trafficclient.st_java.fragment.LKCXFra;
@@ -50,6 +51,7 @@ import com.mad.trafficclient.ws_java.ob42.ParkingLot_Main;
 import com.mad.trafficclient.ws_java.ob48.NetworkTest_Main;
 import com.mad.trafficclient.ws_java.ob5.Sense_Main;
 import com.mad.trafficclient.ws_java.ob60.Subscribe_Main;
+import com.mad.trafficclient.ws_java.ob63.TravelAssistant_Main;
 import com.mad.trafficclient.ws_java.ob7.YuZhiSetting;
 import com.mad.trafficclient.ws_java.ob9.Acc_Main;
 import com.mad.trafficclient.zy_java.data.CarData;
@@ -490,7 +492,7 @@ public class MainActivity extends FragmentActivity implements Acc_Main.To {
                         tV_title.setText(actionTexts[arg2]);
                         break;
                     case 40:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Fragment_1()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new CLSFCXFra()).commit();
                         tV_title.setText(actionTexts[arg2]);
                         break;
                     case 41:
@@ -601,7 +603,7 @@ public class MainActivity extends FragmentActivity implements Acc_Main.To {
                         tV_title.setText(actionTexts[arg2]);
                         break;
                     case 63:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new Tourism_Main()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.maincontent, new TravelAssistant_Main()).commit();
                         tV_title.setText(actionTexts[arg2]);
                         break;
                     case 64:

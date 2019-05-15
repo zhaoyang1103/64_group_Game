@@ -28,7 +28,7 @@ public class Shopping_Util {
 
     public static String getList(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("list", Context.MODE_PRIVATE);
-        return sharedPreferences.getString("listStr", null);
+        return sharedPreferences.getString("listStr", "[]");
     }
 
 }

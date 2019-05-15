@@ -74,6 +74,7 @@ public class TravelAssistant_Shopping extends Fragment implements View.OnClickLi
         context = getContext();
         getActivity().findViewById(R.id.top_title).setVisibility(View.GONE);
         list = new ArrayList<>();
+        System.out.println(list);
         setListView();
         ob63_sh_today.setText("今天" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "\n预定");
         ob63_sh_tomorrow.setText("明天" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + (Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + 1) + "\n预定");
@@ -98,21 +99,22 @@ public class TravelAssistant_Shopping extends Fragment implements View.OnClickLi
                 1,
                 fragment.getArguments().getInt("balance"));
         Log.i("Go_Fight_Now 提醒您", "shoppingBean.toString()" + ":" + shoppingBean.toString());
-
+        
         String data = Shopping_Util.getList(context);
+        if (data == null){
+            Toast.makeText(context, "空的", Toast.LENGTH_SHORT).show();
+        }
         Log.i("Go_Fight_Now 提醒您", "data" + ":" + data);
 
         list = new Gson().fromJson(data, new TypeToken<List<Shopping_Bean>>() {
         }.getType());
+//        Log.i("Go_Fight_Now 提醒您", "显示之前list.size()" + ":" + list.size());
 
-        Log.i("Go_Fight_Now 提醒您", "显示之前list.size()" + ":" + list.size());
-
-        int count = list.size();
-        if (count == 0) {
+        if (list == null||list.size() == 0) {
             list.add(shoppingBean);
         } else {
             boolean state = true;
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < list.size(); i++) {
                 if (shoppingBean.getId() == list.get(i).getId()) {
                     list.get(i).setNumber(list.get(i).getNumber() + 1);
                     state = false;

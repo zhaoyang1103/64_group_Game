@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.mad.trafficclient.R;
 
@@ -32,6 +33,8 @@ public class CLSFCXFra extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fra_clsfcx, container, false);
         initView(view);
+        TextView fenge = (TextView) view.findViewById(R.id.fenge);
+        fenge.setText("<--->");
         initData();
         initListener();
         return view;

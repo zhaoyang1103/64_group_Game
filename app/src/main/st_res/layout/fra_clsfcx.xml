@@ -69,11 +69,11 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/fenge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="100dp"
-            android:text="<--->"
             android:textColor="#000"
             android:textSize="20dp" />
 
